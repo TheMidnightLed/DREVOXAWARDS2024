@@ -1,40 +1,12 @@
 // Objeto para almacenar las respuestas localmente
 const respuestas = {};
 
-// Función para manejar la respuesta del inicio de sesión de Google
-function handleCredentialResponse(response) {
-  const jwt = response.credential;
-  console.log("JWT Token:", jwt);
-  
-  // Decodificar el JWT para obtener información del usuario
-  const userInfo = parseJwt(jwt);
-  console.log("User Info:", userInfo);
-
-  // Ocultar la pantalla de inicio de sesión y mostrar la pantalla principal
-  document.getElementById("login-screen").classList.add("hidden");
-  document.getElementById("main-screen").classList.remove("hidden");
-}
-
-// Función para decodificar el JWT
-function parseJwt(token) {
-  try {
-    return JSON.parse(atob(token.split('.')[1]));
-  } catch (e) {
-    return null;
-  }
-}
-
-// Inicializar Google Sign-In
+// Verificación al cargar la página para comprobar si el usuario ya votó
 window.onload = function () {
-  google.accounts.id.initialize({
-    client_id: "941085287977-3dquirrdvrk5krrq75a9sm10a2n6svnr.apps.googleusercontent.com", // Reemplaza con tu Client ID
-    callback: handleCredentialResponse
-  });
-
-  google.accounts.id.renderButton(
-    document.getElementById("google-signin-button"),
-    { theme: "outline", size: "large" } // Personaliza el botón
-  );
+  if (localStorage.getItem("votoEnviado")) {
+    alert("Ya has enviado tu voto. Solo se permite una participación por persona.");
+    document.getElementById("start-button").disabled = true;
+  }
 };
 
 // Transición inicial al hacer clic en "Comenzar"
@@ -182,6 +154,10 @@ function enviarRespuestas() {
   for (const [questionId, respuesta] of Object.entries(respuestas)) {
     enviarRespuestaGoogleForms(questionId, respuesta);
   }
+
+  // Marcar en localStorage que el usuario ya ha votado
+  localStorage.setItem("votoEnviado", "true");
+
   mostrarPantallaAgradecimiento();
 }
 
@@ -217,6 +193,6 @@ function mostrarPantallaAgradecimiento() {
 
   questionContainer.appendChild(container);
 
-  // Opcional: Ocultar cualquier footer-bar o botones
+  // Ocultar cualquier footer-bar o botones
   document.getElementById("footer-bar").classList.add("hidden");
 }
