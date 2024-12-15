@@ -88,14 +88,13 @@ body {
 
 /* Eliminar bordes y fondos de depuración */
 #question-container * {
-  border: none;
-  background-color: transparent;
+  border: none
 }
 
 /* Área de texto */
 textarea {
   display: block;
-  width: 100%;
+  width: 580px;
   height: 100px;
   margin-top: 10px;
   padding: 10px;
@@ -162,7 +161,7 @@ textarea::placeholder {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px;
+  max-width: 620px;
   margin-top: 20px;
 }
 
