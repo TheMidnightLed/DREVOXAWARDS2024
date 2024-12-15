@@ -68,4 +68,29 @@ body {
     0% { background-color: #6a0dad; }
     100% { background-color: #8a2be2; }
   }
+
+  .texto-aclarativo {
+    font-size: 1rem;
+    color: #cccccc;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  textarea {
+    width: 80%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    background-color: #222;
+    color: white;
+  }
+  
+  textarea::placeholder {
+    color: #888;
+  }
   
