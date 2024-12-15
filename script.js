@@ -1,6 +1,42 @@
 // Objeto para almacenar las respuestas localmente
 const respuestas = {};
 
+// Función para manejar la respuesta del inicio de sesión de Google
+function handleCredentialResponse(response) {
+  const jwt = response.credential;
+  console.log("JWT Token:", jwt);
+  
+  // Decodificar el JWT para obtener información del usuario
+  const userInfo = parseJwt(jwt);
+  console.log("User Info:", userInfo);
+
+  // Ocultar la pantalla de inicio de sesión y mostrar la pantalla principal
+  document.getElementById("login-screen").classList.add("hidden");
+  document.getElementById("main-screen").classList.remove("hidden");
+}
+
+// Función para decodificar el JWT
+function parseJwt(token) {
+  try {
+    return JSON.parse(atob(token.split('.')[1]));
+  } catch (e) {
+    return null;
+  }
+}
+
+// Inicializar Google Sign-In
+window.onload = function () {
+  google.accounts.id.initialize({
+    client_id: "941085287977-3dquirrdvrk5krrq75a9sm10a2n6svnr.apps.googleusercontent.com", // Reemplaza con tu Client ID
+    callback: handleCredentialResponse
+  });
+
+  google.accounts.id.renderButton(
+    document.getElementById("google-signin-button"),
+    { theme: "outline", size: "large" } // Personaliza el botón
+  );
+};
+
 // Transición inicial al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
   const logo = document.getElementById("logo");
@@ -146,7 +182,7 @@ function enviarRespuestas() {
   for (const [questionId, respuesta] of Object.entries(respuestas)) {
     enviarRespuestaGoogleForms(questionId, respuesta);
   }
-  alert("¡Respuestas enviadas! Gracias por participar.");
+  mostrarPantallaAgradecimiento();
 }
 
 // Sincronización con Google Forms
@@ -161,13 +197,6 @@ function enviarRespuestaGoogleForms(questionId, respuesta) {
   })
   .then(() => console.log("Respuesta enviada: ", respuesta))
   .catch(err => console.error("Error al enviar respuesta: ", err));
-}
-
-function enviarRespuestas() {
-  for (const [questionId, respuesta] of Object.entries(respuestas)) {
-    enviarRespuestaGoogleForms(questionId, respuesta);
-  }
-  mostrarPantallaAgradecimiento();
 }
 
 // Nueva función para mostrar la pantalla de agradecimiento
