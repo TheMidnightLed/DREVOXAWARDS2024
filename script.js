@@ -28,7 +28,7 @@ class PreguntaTexto {
     this.questionId = questionId;
   }
 
-  render() {
+  render(onNext, onPrevious) {
     const container = document.createElement("div");
     container.classList.add("question");
 
@@ -60,15 +60,11 @@ class PreguntaTexto {
 
     const nextButton = document.createElement("button");
     nextButton.textContent = "Siguiente";
-    nextButton.addEventListener("click", () => {
-      this.onNext();
-    });
+    nextButton.addEventListener("click", onNext);
 
     const prevButton = document.createElement("button");
     prevButton.textContent = "Anterior";
-    prevButton.addEventListener("click", () => {
-      this.onPrevious();
-    });
+    prevButton.addEventListener("click", onPrevious);
 
     buttonContainer.appendChild(prevButton);
     buttonContainer.appendChild(nextButton);
@@ -76,52 +72,43 @@ class PreguntaTexto {
 
     return container;
   }
-
-  onNext() {}
-  onPrevious() {}
 }
 
-// Mostrar preguntas
+// Funciones para mostrar preguntas
 function mostrarPreguntaClipFavorito() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
 
-  const preguntaTexto = new PreguntaTexto(
+  const pregunta = new PreguntaTexto(
     "Clip favorito del canal",
     "Pon aquí el título y LINK para tu clip favorito",
     "entry.123456789" // Reemplaza con el ID real de la pregunta en Google Forms
   );
-  preguntaTexto.onNext = mostrarPreguntaClipCringe;
-  preguntaTexto.onPrevious = () => {}; // No hay categoría previa
-  questionContainer.appendChild(preguntaTexto.render());
+  questionContainer.appendChild(pregunta.render(mostrarPreguntaClipCringe, () => {}));
 }
 
 function mostrarPreguntaClipCringe() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
 
-  const preguntaTexto = new PreguntaTexto(
+  const pregunta = new PreguntaTexto(
     "Clip más cringe del canal",
     "Pon aquí el título y LINK para tu clip cringe",
     "entry.987654321" // Reemplaza con el ID real de la pregunta en Google Forms
   );
-  preguntaTexto.onNext = mostrarPreguntaEventoIconico;
-  preguntaTexto.onPrevious = mostrarPreguntaClipFavorito;
-  questionContainer.appendChild(preguntaTexto.render());
+  questionContainer.appendChild(pregunta.render(mostrarPreguntaEventoIconico, mostrarPreguntaClipFavorito));
 }
 
 function mostrarPreguntaEventoIconico() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
 
-  const preguntaTexto = new PreguntaTexto(
+  const pregunta = new PreguntaTexto(
     "Evento más icónico de la comunidad (o del chat)",
     "Un evento que haya unido al chat",
     "entry.1122334455" // Reemplaza con el ID real de la pregunta en Google Forms
   );
-  preguntaTexto.onNext = mostrarPantallaConfirmacion;
-  preguntaTexto.onPrevious = mostrarPreguntaClipCringe;
-  questionContainer.appendChild(preguntaTexto.render());
+  questionContainer.appendChild(pregunta.render(mostrarPantallaConfirmacion, mostrarPreguntaClipCringe));
 }
 
 // Mostrar pantalla de confirmación
@@ -160,4 +147,18 @@ function enviarRespuestas() {
     enviarRespuestaGoogleForms(questionId, respuesta);
   }
   alert("¡Respuestas enviadas! Gracias por participar.");
+}
+
+// Sincronización con Google Forms
+function enviarRespuestaGoogleForms(questionId, respuesta) {
+  const formData = new FormData();
+  formData.append(questionId, respuesta);
+
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+  })
+  .then(() => console.log("Respuesta enviada: ", respuesta))
+  .catch(err => console.error("Error al enviar respuesta: ", err));
 }
