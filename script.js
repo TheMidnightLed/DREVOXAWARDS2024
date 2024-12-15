@@ -1,33 +1,6 @@
 // Objeto para almacenar las respuestas localmente
 const respuestas = {};
 
-// Verificación al cargar la página para comprobar si el usuario ya votó
-window.onload = function () {
-  if (localStorage.getItem("votoEnviado")) {
-    alert("Ya has enviado tu voto. Solo se permite una participación por persona.");
-    document.getElementById("start-button").disabled = true;
-  }
-};
-
-// Transición inicial al hacer clic en "Comenzar"
-document.getElementById("start-button").addEventListener("click", () => {
-  const logo = document.getElementById("logo");
-  const mainScreen = document.getElementById("main-screen");
-  const formScreen = document.getElementById("form-screen");
-
-  // Animación de logo (zoom + opacidad)
-  logo.style.transform = "scale(2)";
-  logo.style.opacity = "0";
-
-  setTimeout(() => {
-    mainScreen.classList.add("hidden");
-    formScreen.classList.remove("hidden");
-
-    // Mostrar la primera pregunta
-    mostrarPreguntaClipFavorito();
-  }, 1000);
-});
-
 // Clase para preguntas de texto
 class PreguntaTexto {
   constructor(categoria, textoAclarativo = "", questionId) {
@@ -90,7 +63,7 @@ function mostrarPreguntaClipFavorito() {
   const pregunta = new PreguntaTexto(
     "Clip favorito del canal",
     "Pon aquí el título y LINK para tu clip favorito",
-    "entry.1976024462" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.1976024462"
   );
   questionContainer.appendChild(pregunta.render(mostrarPreguntaClipCringe, () => {}));
 }
@@ -102,7 +75,7 @@ function mostrarPreguntaClipCringe() {
   const pregunta = new PreguntaTexto(
     "Clip más cringe del canal",
     "Pon aquí el título y LINK para tu clip cringe",
-    "entry.813796303" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.813796303"
   );
   questionContainer.appendChild(pregunta.render(mostrarPreguntaEventoIconico, mostrarPreguntaClipFavorito));
 }
@@ -114,7 +87,7 @@ function mostrarPreguntaEventoIconico() {
   const pregunta = new PreguntaTexto(
     "Evento más icónico de la comunidad (o del chat)",
     "Un evento que haya unido al chat",
-    "entry.947596321" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.947596321"
   );
   questionContainer.appendChild(pregunta.render(mostrarPantallaConfirmacion, mostrarPreguntaClipCringe));
 }
@@ -151,28 +124,33 @@ function mostrarPantallaConfirmacion() {
 
 // Enviar todas las respuestas al formulario
 function enviarRespuestas() {
+  const formData = new FormData();
+
+  // Añadir todas las respuestas al formData
   for (const [questionId, respuesta] of Object.entries(respuestas)) {
-    enviarRespuestaGoogleForms(questionId, respuesta);
+    if (respuesta.trim() !== "") {
+      formData.append(questionId, respuesta);
+    }
   }
 
-  // Marcar en localStorage que el usuario ya ha votado
-  localStorage.setItem("votoEnviado", "true");
-
-  mostrarPantallaAgradecimiento();
-}
-
-// Sincronización con Google Forms
-function enviarRespuestaGoogleForms(questionId, respuesta) {
-  const formData = new FormData();
-  formData.append(questionId, respuesta);
+  // Verificar si hay respuestas antes de enviar
+  if (formData.entries().next().done) {
+    alert("No puedes enviar respuestas vacías.");
+    return;
+  }
 
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
     method: "POST",
     body: formData,
     mode: "no-cors"
   })
-  .then(() => console.log("Respuesta enviada: ", respuesta))
-  .catch(err => console.error("Error al enviar respuesta: ", err));
+  .then(() => {
+    console.log("Respuestas enviadas exitosamente.");
+    mostrarPantallaAgradecimiento();
+    // Marcar en localStorage que ya se votó
+    localStorage.setItem("votoRealizado", "true");
+  })
+  .catch(err => console.error("Error al enviar respuestas: ", err));
 }
 
 // Nueva función para mostrar la pantalla de agradecimiento
@@ -193,6 +171,30 @@ function mostrarPantallaAgradecimiento() {
 
   questionContainer.appendChild(container);
 
-  // Ocultar cualquier footer-bar o botones
+  // Opcional: Ocultar cualquier footer-bar o botones
   document.getElementById("footer-bar").classList.add("hidden");
 }
+
+// Transición inicial al hacer clic en "Comenzar"
+document.getElementById("start-button").addEventListener("click", () => {
+  if (localStorage.getItem("votoRealizado")) {
+    alert("Ya has participado en esta encuesta. ¡Gracias!");
+    return;
+  }
+
+  const logo = document.getElementById("logo");
+  const mainScreen = document.getElementById("main-screen");
+  const formScreen = document.getElementById("form-screen");
+
+  // Animación de logo (zoom + opacidad)
+  logo.style.transform = "scale(2)";
+  logo.style.opacity = "0";
+
+  setTimeout(() => {
+    mainScreen.classList.add("hidden");
+    formScreen.classList.remove("hidden");
+
+    // Mostrar la primera pregunta
+    mostrarPreguntaClipFavorito();
+  }, 1000);
+});
