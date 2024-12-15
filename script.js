@@ -1,22 +1,19 @@
 // Transición inicial al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
   const logo = document.getElementById("logo");
-  const title = document.getElementById("title");
   const mainScreen = document.getElementById("main-screen");
   const formScreen = document.getElementById("form-screen");
 
-  // Animación de logo y título
+  // Animación de logo (zoom + opacidad)
   logo.style.transform = "scale(2)";
-  title.style.opacity = "0";
   logo.style.opacity = "0";
 
   setTimeout(() => {
     mainScreen.classList.add("hidden");
     formScreen.classList.remove("hidden");
 
-    // Mostrar la pregunta inicial
+    // Mostrar la primera pregunta
     mostrarPreguntaClipFavorito();
-    mostrarBarraInferior(); // Aseguramos que la barra se muestre
   }, 1000);
 });
 
@@ -36,9 +33,10 @@ function enviarRespuestaGoogleForms(questionId, respuesta) {
 
 // Clase para preguntas de texto
 class PreguntaTexto {
-  constructor(categoria, textoAclarativo = "") {
+  constructor(categoria, textoAclarativo = "", questionId) {
     this.categoria = categoria;
     this.textoAclarativo = textoAclarativo;
+    this.questionId = questionId;
   }
 
   render() {
@@ -63,67 +61,60 @@ class PreguntaTexto {
     input.setAttribute("placeholder", "Escribe tu respuesta aquí...");
     container.appendChild(input);
 
-    return container;
-  }
-}
+    // Botones de navegación
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("navigation-buttons");
 
-// Clase para preguntas de votación
-class PreguntaVotar {
-  constructor(categoria, opciones) {
-    this.categoria = categoria;
-    this.opciones = opciones;
-  }
-
-  render() {
-    const container = document.createElement("div");
-    container.classList.add("question");
-
-    const title = document.createElement("h2");
-    title.textContent = this.categoria;
-    container.appendChild(title);
-
-    const optionsContainer = document.createElement("div");
-    optionsContainer.classList.add("options-container");
-
-    this.opciones.forEach((opcion, index) => {
-      const option = document.createElement("div");
-      option.classList.add("option");
-      option.textContent = opcion.texto;
-      option.style.backgroundImage = `url(${opcion.imagen})`;
-
-      option.addEventListener("click", () => {
-        document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
-        option.classList.add("selected");
-      });
-
-      optionsContainer.appendChild(option);
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Siguiente";
+    nextButton.addEventListener("click", () => {
+      enviarRespuestaGoogleForms(this.questionId, input.value);
+      mostrarPreguntaClipCringe();
     });
 
-    container.appendChild(optionsContainer);
+    const prevButton = document.createElement("button");
+    prevButton.textContent = "Anterior";
+    prevButton.addEventListener("click", () => {
+      enviarRespuestaGoogleForms(this.questionId, input.value);
+      mostrarPreguntaClipFavorito(true);
+    });
+
+    buttonContainer.appendChild(prevButton);
+    buttonContainer.appendChild(nextButton);
+    container.appendChild(buttonContainer);
+
     return container;
   }
 }
 
-// Crear y mostrar la primera pregunta al hacer clic en "Comenzar"
-function mostrarPreguntaClipFavorito() {
+// Mostrar la pregunta de "Clip favorito del canal"
+function mostrarPreguntaClipFavorito(isReturning = false) {
   const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
+
   const preguntaTexto = new PreguntaTexto(
     "Clip favorito del canal",
-    "Pon aquí el título y LINK para tu clip favorito"
+    "Pon aquí el título y LINK para tu clip favorito",
+    "entry.123456789" // Reemplaza con el ID real de la pregunta en Google Forms
   );
-  questionContainer.appendChild(preguntaTexto.render());
+
+  const questionElement = preguntaTexto.render();
+  questionElement.classList.add(isReturning ? "slide-right" : "slide-left");
+  questionContainer.appendChild(questionElement);
 }
 
-// Función para mostrar la barra inferior
-function mostrarBarraInferior() {
-  const nextButton = document.getElementById("next-button");
+// Mostrar la pregunta de "Clip más cringe del canal"
+function mostrarPreguntaClipCringe() {
+  const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
 
-  // Mostrar barra inferior
-  nextButton.classList.remove("hidden");
-  nextButton.textContent = "Continuar";
+  const preguntaTexto = new PreguntaTexto(
+    "Clip más cringe del canal",
+    "Pon aquí el título y LINK para tu clip cringe",
+    "entry.987654321" // Reemplaza con el ID real de la pregunta en Google Forms
+  );
 
-  nextButton.addEventListener("click", () => {
-    // Lógica para avanzar a la siguiente categoría
-    console.log("Avanzando a la siguiente categoría...");
-  });
+  const questionElement = preguntaTexto.render();
+  questionElement.classList.add("slide-left");
+  questionContainer.appendChild(questionElement);
 }
