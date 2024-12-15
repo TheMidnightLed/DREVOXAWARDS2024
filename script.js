@@ -162,3 +162,32 @@ function enviarRespuestaGoogleForms(questionId, respuesta) {
   .then(() => console.log("Respuesta enviada: ", respuesta))
   .catch(err => console.error("Error al enviar respuesta: ", err));
 }
+
+function enviarRespuestas() {
+  for (const [questionId, respuesta] of Object.entries(respuestas)) {
+    enviarRespuestaGoogleForms(questionId, respuesta);
+  }
+  mostrarPantallaAgradecimiento();
+}
+
+// Nueva función para mostrar la pantalla de agradecimiento
+function mostrarPantallaAgradecimiento() {
+  const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
+
+  const container = document.createElement("div");
+  container.classList.add("thank-you-screen");
+
+  const title = document.createElement("h2");
+  title.textContent = "¡Gracias por participar!";
+  container.appendChild(title);
+
+  const message = document.createElement("p");
+  message.textContent = "Tus respuestas han sido enviadas con éxito.";
+  container.appendChild(message);
+
+  questionContainer.appendChild(container);
+
+  // Opcional: Ocultar cualquier footer-bar o botones
+  document.getElementById("footer-bar").classList.add("hidden");
+}
