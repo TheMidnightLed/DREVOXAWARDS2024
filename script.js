@@ -1,3 +1,6 @@
+// Variables globales para almacenar respuestas
+let respuestas = {};
+
 // Transición inicial al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
   const logo = document.getElementById("logo");
@@ -31,6 +34,18 @@ function enviarRespuestaGoogleForms(questionId, respuesta) {
     .catch(err => console.error("Error al enviar respuesta: ", err));
 }
 
+// Función para almacenar respuestas en localStorage
+function guardarRespuesta(questionId, respuesta) {
+  respuestas[questionId] = respuesta;
+  localStorage.setItem('respuestas', JSON.stringify(respuestas));
+}
+
+// Función para recuperar respuestas guardadas de localStorage
+function recuperarRespuestas() {
+  const storedRespuestas = localStorage.getItem('respuestas');
+  return storedRespuestas ? JSON.parse(storedRespuestas) : {};
+}
+
 // Clase para preguntas de texto
 class PreguntaTexto {
   constructor(categoria, textoAclarativo = "", questionId) {
@@ -61,6 +76,16 @@ class PreguntaTexto {
     input.setAttribute("placeholder", "Escribe tu respuesta aquí...");
     container.appendChild(input);
 
+    // Si hay respuesta guardada, mostrarla
+    const storedRespuestas = recuperarRespuestas();
+    if (storedRespuestas[this.questionId]) {
+      input.value = storedRespuestas[this.questionId];
+    }
+
+    input.addEventListener("input", () => {
+      guardarRespuesta(this.questionId, input.value);
+    });
+
     // Botones de navegación
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("navigation-buttons");
@@ -68,14 +93,14 @@ class PreguntaTexto {
     const nextButton = document.createElement("button");
     nextButton.textContent = "Siguiente";
     nextButton.addEventListener("click", () => {
-      enviarRespuestaGoogleForms(this.questionId, input.value);
+      
       mostrarPreguntaClipCringe();
     });
 
     const prevButton = document.createElement("button");
     prevButton.textContent = "Anterior";
     prevButton.addEventListener("click", () => {
-      enviarRespuestaGoogleForms(this.questionId, input.value);
+      
       mostrarPreguntaClipFavorito(true);
     });
 
