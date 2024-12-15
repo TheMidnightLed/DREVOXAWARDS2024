@@ -1,18 +1,32 @@
-// Pantalla principal y navegación básica
+// Transición inicial al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
-    const mainScreen = document.getElementById("main-screen");
-    const formScreen = document.getElementById("form-screen");
-  
-    // Transición del logo
-    const logo = document.getElementById("logo");
-    logo.style.transform = "scale(2)";
-    logo.style.opacity = "0";
-  
-    setTimeout(() => {
-      mainScreen.classList.add("hidden");
-      formScreen.classList.remove("hidden");
-    }, 1000);
-  });
+  const logo = document.getElementById("logo");
+  const mainScreen = document.getElementById("main-screen");
+  const formScreen = document.getElementById("form-screen");
+
+  // Animación de logo (zoom + opacidad)
+  logo.style.transform = "scale(2)";
+  logo.style.opacity = "0";
+
+  setTimeout(() => {
+    mainScreen.classList.add("hidden");
+    formScreen.classList.remove("hidden");
+  }, 1000);
+});
+
+// Sincronización con Google Forms
+function enviarRespuestaGoogleForms(questionId, respuesta) {
+  const formData = new FormData();
+  formData.append(questionId, respuesta);
+
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+  })
+  .then(() => console.log("Respuesta enviada: ", respuesta))
+  .catch(err => console.error("Error al enviar respuesta: ", err));
+}
   
   // Clase para preguntas de texto
   class PreguntaTexto {
@@ -85,13 +99,11 @@ document.getElementById("start-button").addEventListener("click", () => {
   }
   
 
-// Crear y mostrar la primera pregunta
+// Crear y mostrar la primera pregunta al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
   const mainScreen = document.getElementById("main-screen");
   const formScreen = document.getElementById("form-screen");
-  const questionContainer = document.getElementById("question-container");
 
-  // Transición de pantalla principal
   const logo = document.getElementById("logo");
   logo.style.transform = "scale(2)";
   logo.style.opacity = "0";
@@ -100,11 +112,17 @@ document.getElementById("start-button").addEventListener("click", () => {
     mainScreen.classList.add("hidden");
     formScreen.classList.remove("hidden");
 
-    // Renderizar la primera pregunta
-    const preguntaTexto = new PreguntaTexto(
-      "Clip favorito del canal",
-      "Pon aquí el título y LINK para tu clip favorito"
-    );
-    questionContainer.appendChild(preguntaTexto.render());
+    // Mostrar la pregunta de clip favorito
+    mostrarPreguntaClipFavorito();
   }, 1000);
 });
+
+// Función para mostrar la pregunta de clip favorito
+function mostrarPreguntaClipFavorito() {
+  const questionContainer = document.getElementById("question-container");
+  const preguntaTexto = new PreguntaTexto(
+    "Clip favorito del canal",
+    "Pon aquí el título y LINK para tu clip favorito"
+  );
+  questionContainer.appendChild(preguntaTexto.render());
+}

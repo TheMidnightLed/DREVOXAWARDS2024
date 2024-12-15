@@ -5,24 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DREVOX AWARDS 2024</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="main-screen" class="screen">
-    <h1>DREVOX AWARDS 2024</h1>
-    <img src="logo.png" alt="Drevox Logo" id="logo">
-    <button id="start-button">Comenzar</button>
+    <div id="logo-container">
+      <img id="logo" src="logo.png" alt="DREVOX AWARDS Logo">
+      <h1>DREVOX AWARDS 2024</h1>
+      <button id="start-button">Comenzar</button>
+    </div>
   </div>
-
   <div id="form-screen" class="screen hidden">
     <div class="header-bar">DREVOX AWARDS 2024</div>
     <div id="question-container"></div>
-    <div class="footer-bar">
-      <button id="previous-button" class="nav-button hidden">◄ Anterior</button>
-      <button id="next-button" class="nav-button">Siguiente ►</button>
-      <button id="submit-button" class="nav-button hidden">Enviar</button>
-    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
