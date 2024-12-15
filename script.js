@@ -82,7 +82,7 @@ function mostrarPreguntaClipFavorito() {
   const pregunta = new PreguntaTexto(
     "Clip favorito del canal",
     "Pon aquí el título y LINK para tu clip favorito",
-    "entry.123456789" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.1976024462" // Reemplaza con el ID real de la pregunta en Google Forms
   );
   questionContainer.appendChild(pregunta.render(mostrarPreguntaClipCringe, () => {}));
 }
@@ -94,7 +94,7 @@ function mostrarPreguntaClipCringe() {
   const pregunta = new PreguntaTexto(
     "Clip más cringe del canal",
     "Pon aquí el título y LINK para tu clip cringe",
-    "entry.987654321" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.813796303" // Reemplaza con el ID real de la pregunta en Google Forms
   );
   questionContainer.appendChild(pregunta.render(mostrarPreguntaEventoIconico, mostrarPreguntaClipFavorito));
 }
@@ -106,7 +106,7 @@ function mostrarPreguntaEventoIconico() {
   const pregunta = new PreguntaTexto(
     "Evento más icónico de la comunidad (o del chat)",
     "Un evento que haya unido al chat",
-    "entry.1122334455" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.947596321" // Reemplaza con el ID real de la pregunta en Google Forms
   );
   questionContainer.appendChild(pregunta.render(mostrarPantallaConfirmacion, mostrarPreguntaClipCringe));
 }
