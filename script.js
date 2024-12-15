@@ -1,5 +1,5 @@
-// Variables globales para almacenar respuestas
-let respuestas = {};
+// Objeto para almacenar las respuestas localmente
+const respuestas = {};
 
 // Transición inicial al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
@@ -19,32 +19,6 @@ document.getElementById("start-button").addEventListener("click", () => {
     mostrarPreguntaClipFavorito();
   }, 1000);
 });
-
-// Sincronización con Google Forms
-function enviarRespuestaGoogleForms(questionId, respuesta) {
-  const formData = new FormData();
-  formData.append(questionId, respuesta);
-
-  fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
-    method: "POST",
-    body: formData,
-    mode: "no-cors"
-  })
-    .then(() => console.log("Respuesta enviada: ", respuesta))
-    .catch(err => console.error("Error al enviar respuesta: ", err));
-}
-
-// Función para almacenar respuestas en localStorage
-function guardarRespuesta(questionId, respuesta) {
-  respuestas[questionId] = respuesta;
-  localStorage.setItem('respuestas', JSON.stringify(respuestas));
-}
-
-// Función para recuperar respuestas guardadas de localStorage
-function recuperarRespuestas() {
-  const storedRespuestas = localStorage.getItem('respuestas');
-  return storedRespuestas ? JSON.parse(storedRespuestas) : {};
-}
 
 // Clase para preguntas de texto
 class PreguntaTexto {
@@ -74,17 +48,11 @@ class PreguntaTexto {
     // Barra para escribir
     const input = document.createElement("textarea");
     input.setAttribute("placeholder", "Escribe tu respuesta aquí...");
-    container.appendChild(input);
-
-    // Si hay respuesta guardada, mostrarla
-    const storedRespuestas = recuperarRespuestas();
-    if (storedRespuestas[this.questionId]) {
-      input.value = storedRespuestas[this.questionId];
-    }
-
+    input.value = respuestas[this.questionId] || ""; // Cargar respuesta guardada
     input.addEventListener("input", () => {
-      guardarRespuesta(this.questionId, input.value);
+      respuestas[this.questionId] = input.value; // Guardar respuesta en memoria local
     });
+    container.appendChild(input);
 
     // Botones de navegación
     const buttonContainer = document.createElement("div");
@@ -93,15 +61,13 @@ class PreguntaTexto {
     const nextButton = document.createElement("button");
     nextButton.textContent = "Siguiente";
     nextButton.addEventListener("click", () => {
-      
-      mostrarPreguntaClipCringe();
+      this.onNext();
     });
 
     const prevButton = document.createElement("button");
     prevButton.textContent = "Anterior";
     prevButton.addEventListener("click", () => {
-      
-      mostrarPreguntaClipFavorito(true);
+      this.onPrevious();
     });
 
     buttonContainer.appendChild(prevButton);
@@ -110,25 +76,26 @@ class PreguntaTexto {
 
     return container;
   }
+
+  onNext() {}
+  onPrevious() {}
 }
 
-// Mostrar la pregunta de "Clip favorito del canal"
-function mostrarPreguntaClipFavorito(isReturning = false) {
+// Mostrar preguntas
+function mostrarPreguntaClipFavorito() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
 
   const preguntaTexto = new PreguntaTexto(
     "Clip favorito del canal",
     "Pon aquí el título y LINK para tu clip favorito",
-    "entry.1976024462" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.123456789" // Reemplaza con el ID real de la pregunta en Google Forms
   );
-
-  const questionElement = preguntaTexto.render();
-  questionElement.classList.add(isReturning ? "slide-right" : "slide-left");
-  questionContainer.appendChild(questionElement);
+  preguntaTexto.onNext = mostrarPreguntaClipCringe;
+  preguntaTexto.onPrevious = () => {}; // No hay categoría previa
+  questionContainer.appendChild(preguntaTexto.render());
 }
 
-// Mostrar la pregunta de "Clip más cringe del canal"
 function mostrarPreguntaClipCringe() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
@@ -136,10 +103,61 @@ function mostrarPreguntaClipCringe() {
   const preguntaTexto = new PreguntaTexto(
     "Clip más cringe del canal",
     "Pon aquí el título y LINK para tu clip cringe",
-    "entry.813796303" // Reemplaza con el ID real de la pregunta en Google Forms
+    "entry.987654321" // Reemplaza con el ID real de la pregunta en Google Forms
   );
+  preguntaTexto.onNext = mostrarPreguntaEventoIconico;
+  preguntaTexto.onPrevious = mostrarPreguntaClipFavorito;
+  questionContainer.appendChild(preguntaTexto.render());
+}
 
-  const questionElement = preguntaTexto.render();
-  questionElement.classList.add("slide-left");
-  questionContainer.appendChild(questionElement);
+function mostrarPreguntaEventoIconico() {
+  const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
+
+  const preguntaTexto = new PreguntaTexto(
+    "Evento más icónico de la comunidad (o del chat)",
+    "Un evento que haya unido al chat",
+    "entry.1122334455" // Reemplaza con el ID real de la pregunta en Google Forms
+  );
+  preguntaTexto.onNext = mostrarPantallaConfirmacion;
+  preguntaTexto.onPrevious = mostrarPreguntaClipCringe;
+  questionContainer.appendChild(preguntaTexto.render());
+}
+
+// Mostrar pantalla de confirmación
+function mostrarPantallaConfirmacion() {
+  const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
+
+  const container = document.createElement("div");
+  container.classList.add("confirmation-screen");
+
+  const title = document.createElement("h2");
+  title.textContent = "¿Enviar respuestas?";
+  container.appendChild(title);
+
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("navigation-buttons");
+
+  const sendButton = document.createElement("button");
+  sendButton.textContent = "Enviar";
+  sendButton.addEventListener("click", enviarRespuestas);
+
+  const prevButton = document.createElement("button");
+  prevButton.textContent = "Anterior";
+  prevButton.addEventListener("click", mostrarPreguntaEventoIconico);
+
+  buttonContainer.appendChild(prevButton);
+  buttonContainer.appendChild(sendButton);
+  container.appendChild(buttonContainer);
+
+  questionContainer.appendChild(container);
+}
+
+// Enviar todas las respuestas al formulario
+function enviarRespuestas() {
+  for (const [questionId, respuesta] of Object.entries(respuestas)) {
+    enviarRespuestaGoogleForms(questionId, respuesta);
+  }
+  alert("¡Respuestas enviadas! Gracias por participar.");
 }

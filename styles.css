@@ -159,6 +159,14 @@ textarea::placeholder {
   background-color: #5a009f;
 }
 
+.confirmation-screen {
+  text-align: center;
+}
+
+.confirmation-screen h2 {
+  margin-bottom: 20px;
+}
+
 #next-button {
   padding: 10px 20px;
   font-size: 1rem;
