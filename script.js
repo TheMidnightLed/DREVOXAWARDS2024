@@ -101,19 +101,23 @@ function enviarRespuestaGoogleForms(questionId, respuesta) {
 
 // Crear y mostrar la primera pregunta al hacer clic en "Comenzar"
 document.getElementById("start-button").addEventListener("click", () => {
+  const logo = document.getElementById("logo");
+  const title = document.getElementById("title");
   const mainScreen = document.getElementById("main-screen");
   const formScreen = document.getElementById("form-screen");
 
-  const logo = document.getElementById("logo");
+  // Animación de logo y título
   logo.style.transform = "scale(2)";
+  title.style.opacity = "0";
   logo.style.opacity = "0";
 
   setTimeout(() => {
     mainScreen.classList.add("hidden");
     formScreen.classList.remove("hidden");
 
-    // Mostrar la pregunta de clip favorito
+    // Mostrar la pregunta inicial
     mostrarPreguntaClipFavorito();
+    mostrarBarraInferior(); // Aseguramos que la barra se muestre
   }, 1000);
 });
 
@@ -125,4 +129,17 @@ function mostrarPreguntaClipFavorito() {
     "Pon aquí el título y LINK para tu clip favorito"
   );
   questionContainer.appendChild(preguntaTexto.render());
+}
+
+function mostrarBarraInferior() {
+  const nextButton = document.getElementById("next-button");
+
+  // Mostrar barra inferior
+  nextButton.classList.remove("hidden");
+  nextButton.textContent = "Continuar";
+
+  nextButton.addEventListener("click", () => {
+    // Lógica para avanzar a la siguiente categoría
+    console.log("Avanzando a la siguiente categoría...");
+  });
 }

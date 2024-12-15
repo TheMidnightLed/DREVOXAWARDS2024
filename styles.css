@@ -21,30 +21,51 @@ body {
 }
 
 /* Pantalla principal */
-#logo-container {
+#main-screen {
   text-align: center;
-  animation: fadeIn 2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 #logo {
-  width: 200px;
-  transition: transform 1s, opacity 1s;
+  width: 200px; /* Ajusta el tamaño inicial */
+  max-width: 100%;
+  margin-bottom: 20px;
+  transition: transform 1s, opacity 1s; /* Animación suave */
 }
 
 #start-button {
-  margin-top: 20px;
-  padding: 10px 20px;
   font-size: 1.2rem;
-  border: none;
-  background-color: #6a0dad;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s;
+  padding: 10px 20px;
+  margin-top: 20px;
 }
 
-#start-button:hover {
-  transform: scale(1.1);
+#form-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#bottom-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#next-button {
+  font-size: 1rem;
+  padding: 10px 20px;
 }
 
 /* Barra superior */

@@ -8,17 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="main-screen" class="screen">
-    <div id="logo-container">
-      <img id="logo" src="logo.png" alt="DREVOX AWARDS Logo">
-      <h1>DREVOX AWARDS 2024</h1>
-      <button id="start-button">Comenzar</button>
+  <div id="main-screen">
+    <h1 id="title">DREVOX AWARDS 2024</h1>
+    <img id="logo" src="ruta-del-logo.png" alt="Logo">
+    <button id="start-button">Comenzar</button>
+  </div>
+  
+  <div id="form-screen" class="hidden">
+    <div id="question-container"></div>
+    <div id="bottom-bar">
+      <button id="next-button" class="hidden">Continuar</button>
     </div>
   </div>
-  <div id="form-screen" class="screen hidden">
-    <div class="header-bar">DREVOX AWARDS 2024</div>
-    <div id="question-container"></div>
-  </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
