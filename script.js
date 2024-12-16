@@ -89,7 +89,7 @@ function mostrarPreguntaEventoIconico() {
     "Un evento que haya unido al chat",
     "entry.947596321"
   );
-  questionContainer.appendChild(pregunta.render(mostrarPantallaConfirmacion, mostrarPreguntaClipCringe));
+  questionContainer.appendChild(pregunta.render(mostrarPreguntaMemeIconico, mostrarPreguntaClipCringe));
 }
 
 // Clase para preguntas de opción múltiple
@@ -171,7 +171,7 @@ function mostrarPreguntaMemeIconico() {
     { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico", opciones, "entry.123456789"), mostrarPreguntaMejorColaboracion);
+  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico", opciones, "entry.219126118"), mostrarPreguntaMejorColaboracion, mostrarPreguntaEventoIconico);
 }
 
 function mostrarPreguntaMejorColaboracion() {
@@ -181,7 +181,7 @@ function mostrarPreguntaMejorColaboracion() {
     { texto: "Collab de Slots (Drevox, Ganchos y JhessCC)", imagen: "FORMULARIO/colaboracion_3.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.987654321"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.1820309658"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
 }
 
 function mostrarPreguntaBaneadoFavorito() {
@@ -191,7 +191,7 @@ function mostrarPreguntaBaneadoFavorito() {
     { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.jpeg" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito", opciones, "entry.456789123"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
+  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito", opciones, "entry.383688201"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
 }
 
 function mostrarPreguntaViewerMasFiel() {
@@ -204,7 +204,7 @@ function mostrarPreguntaViewerMasFiel() {
     { texto: "JOSHUA_OUO", imagen: "FORMULARIO/viewer_6.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.654321987"), mostrarPantallaConfirmacion, mostrarPreguntaBaneadoFavorito);
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.136252067"), mostrarPantallaConfirmacion, mostrarPreguntaBaneadoFavorito);
 }
 
 // Función para mostrar una pregunta genérica
