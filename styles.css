@@ -66,7 +66,7 @@ body {
 
 #question-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   padding: 20px;
   text-align: center;
   position: relative;
@@ -91,10 +91,18 @@ body {
   border: none
 }
 
+.textarea-container {
+  display: flex;              /* Activa flexbox */
+  justify-content: center;    /* Centra horizontalmente */
+  align-items: center;        /* Centra verticalmente (si es necesario) */
+  height: 100%;               /* Toma toda la altura del contenedor padre */
+  width: 100%;                /* Toma todo el ancho del contenedor padre */
+  margin-top: 20px;           /* Ajusta el margen superior si lo necesitas */
+}
+
 /* Área de texto */
 textarea {
-  display: block;
-  width: 780px;
+  width: 580px;
   height: 100px;
   margin-top: 10px;
   padding: 10px;
@@ -159,9 +167,9 @@ textarea::placeholder {
 /* Botones de navegación */
 .navigation-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 400px;
   width: 100%;
-  max-width: 820px;
   margin-top: 20px;
 }
 
