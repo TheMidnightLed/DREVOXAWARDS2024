@@ -177,8 +177,9 @@ function mostrarPreguntaMemeIconico() {
 function mostrarPreguntaMejorColaboracion() {
   const opciones = [
     { texto: "Cera caliente (Drevox y la señorita)", imagen: "FORMULARIO/colaboracion_1.png" },
-    { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.jpeg" },
+    { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.png" },
     { texto: "Collab de Slots (Drevox, Ganchos y JhessCC)", imagen: "FORMULARIO/colaboracion_3.png" },
+    { texto: "LaGatoPe x Minecraft Hardcore", imagen: "FORMULARIO/colaboracion_4.png" },
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.1820309658"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
@@ -186,9 +187,9 @@ function mostrarPreguntaMejorColaboracion() {
 
 function mostrarPreguntaBaneadoFavorito() {
   const opciones = [
-    { texto: "Astronita", imagen: "FORMULARIO/baneado_1.jpg" },
-    { texto: "Zapatitos Amarillos", imagen: "FORMULARIO/baneado_2.jpg" },
-    { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.jpeg" },
+    { texto: "Astronita", imagen: "FORMULARIO/baneado_1.png" },
+    { texto: "Zapatitos Amarillos", imagen: "FORMULARIO/baneado_2.png" },
+    { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.png" },
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito", opciones, "entry.383688201"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
@@ -235,7 +236,7 @@ function mostrarPantallaConfirmacion() {
 
   const prevButton = document.createElement("button");
   prevButton.textContent = "Anterior";
-  prevButton.addEventListener("click", mostrarPreguntaEventoIconico);
+  prevButton.addEventListener("click", mostrarPreguntaViewerMasFiel);
 
   buttonContainer.appendChild(prevButton);
   buttonContainer.appendChild(sendButton);
