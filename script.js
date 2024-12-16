@@ -384,7 +384,7 @@ function mostrarPreguntaMechaCorta() {
     { texto: "TONY", imagen: "FORMULARIO/mecha_4.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726240007"), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726250007"), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
 }
 
 function mostrarPreguntaEnemigoStreamer() {
@@ -485,7 +485,7 @@ function enviarRespuestas() {
   params.append("entry.1246182248", respuestas["entry.1246182248"] || "");
   params.append("entry.1996664871", respuestas["entry.1996664871"] || "");
   params.append("entry.670098138", respuestas["entry.670098138"] || "");
-  params.append("entry.1726240007", respuestas["entry.1726240007"] || "");
+  params.append("entry.1726250007", respuestas["entry.1726250007"] || "");
   params.append("entry.575345266", respuestas["entry.575345266"] || "");
   params.append("entry.1212348438", respuestas["entry.1212348438"] || "");
   params.append("entry.1947741075", respuestas["entry.1947741075"] || "");
