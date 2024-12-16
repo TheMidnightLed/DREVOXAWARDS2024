@@ -177,7 +177,7 @@ function mostrarPreguntaMemeIconico() {
 function mostrarPreguntaMejorColaboracion() {
   const opciones = [
     { texto: "Cera caliente (Drevox y la señorita)", imagen: "FORMULARIO/colaboracion_1.png" },
-    { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.png" },
+    { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.jpeg" },
     { texto: "Collab de Slots (Drevox, Ganchos y JhessCC)", imagen: "FORMULARIO/colaboracion_3.png" },
   ];
 
@@ -197,9 +197,9 @@ function mostrarPreguntaBaneadoFavorito() {
 function mostrarPreguntaViewerMasFiel() {
   const opciones = [
     { texto: "LIFENATURAL", imagen: "FORMULARIO/viewer_1.png" },
-    { texto: "FELIPE", imagen: "FORMULARIO/viewer_2.png" },
+    { texto: "FELIPE", imagen: "FORMULARIO/viewer_2.jpeg" },
     { texto: "THEMIDNIGHTLED", imagen: "FORMULARIO/viewer_3.png" },
-    { texto: "V0LTA", imagen: "FORMULARIO/viewer_4.png" },
+    { texto: "V0LTA", imagen: "FORMULARIO/viewer_4.jpeg" },
     { texto: "THXA67", imagen: "FORMULARIO/viewer_5.png" },
     { texto: "JOSHUA_OUO", imagen: "FORMULARIO/viewer_6.png" },
   ];
