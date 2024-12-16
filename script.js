@@ -184,7 +184,7 @@ function mostrarPreguntaMejorColaboracion() {
     { texto: "Cera caliente (Drevox y la señorita)", imagen: "FORMULARIO/colaboracion_1.png" },
     { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.png" },
     { texto: "Collab de Slots (Drevox, Ganchos y JhessCC)", imagen: "FORMULARIO/colaboracion_3.png" },
-    { texto: "LaGatoPe x Minecraft Hardcore", imagen: "FORMULARIO/colaboracion_4.png" },
+    { texto: "LaGatoPe x Hardcore", imagen: "FORMULARIO/colaboracion_4.png" },
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.1820309658"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
