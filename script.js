@@ -170,7 +170,7 @@ function mostrarPreguntaMemeIconico() {
   const opciones = [
     { texto: "Bien hecho sobrino hoy te kcho el doble", imagen: "FORMULARIO/meme_1.png" },
     { texto: "Drevox sueño", imagen: "FORMULARIO/meme_2.png" },
-    { texto: "DrevoxCrazy", imagen: "FORMULARIO/MegoPunch.gif" },
+    { texto: "DrevoxCrazy", imagen: "FORMULARIO/meme_3.png" },
     { texto: "EllayaEntroYo", imagen: "FORMULARIO/meme_4.png" },
     { texto: "Nai Nai Nai", imagen: "FORMULARIO/meme_5.png" },
     { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
