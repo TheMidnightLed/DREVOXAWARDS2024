@@ -271,10 +271,10 @@ function enviarRespuestas() {
   }  
 
   // Enviar los datos a Google Forms
-  fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
+  fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
     method: "POST",
     body: formData,
-    mode: "no-cors"
+    
   })
   .then(() => {
     console.log("Respuestas enviadas exitosamente.");
