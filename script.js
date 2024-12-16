@@ -254,15 +254,27 @@ function mostrarPantallaConfirmacion() {
 function enviarRespuestas() {
   console.log(respuestas);  // Verifica el contenido del objeto antes de enviar
   const formData = new FormData();
+  const formUrl = new URL("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse");
 
-  // Añadir respuestas a formData
-  formData.append("entry.1976024462", respuestas["entry.1976024462"] || "");
-  formData.append("entry.813796303", respuestas["entry.813796303"] || "");
-  formData.append("entry.947596321", respuestas["entry.947596321"] || "");
-  formData.append("entry.219126118", respuestas["entry.219126118"] || "");
-  formData.append("entry.1820309658", respuestas["entry.1820309658"] || "");
-  formData.append("entry.383688201", respuestas["entry.383688201"] || "");
-  formData.append("entry.136252067", respuestas["entry.136252067"] || "");
+  formUrl.searchParams.append("entry.1976024462", respuestas["entry.1976024462"] || "");
+  formUrl.searchParams.append("entry.813796303", respuestas["entry.813796303"] || "");
+  formUrl.searchParams.append("entry.947596321", respuestas["entry.947596321"] || "");
+  formUrl.searchParams.append("entry.219126118", respuestas["entry.219126118"] || "");
+  formUrl.searchParams.append("entry.1820309658", respuestas["entry.1820309658"] || "");
+  formUrl.searchParams.append("entry.383688201", respuestas["entry.383688201"] || "");
+  formUrl.searchParams.append("entry.136252067", respuestas["entry.136252067"] || "");
+
+  // Redirigir a la URL con los parámetros
+  window.location.href = formUrl.toString();
+  
+  // Añadir respuestas a formData como cadenas JSON
+  formData.append("entry.1976024462", JSON.stringify(respuestas["entry.1976024462"] || ""));
+  formData.append("entry.813796303", JSON.stringify(respuestas["entry.813796303"] || ""));
+  formData.append("entry.947596321", JSON.stringify(respuestas["entry.947596321"] || ""));
+  formData.append("entry.219126118", JSON.stringify(respuestas["entry.219126118"] || ""));
+  formData.append("entry.1820309658", JSON.stringify(respuestas["entry.1820309658"] || ""));
+  formData.append("entry.383688201", JSON.stringify(respuestas["entry.383688201"] || ""));
+  formData.append("entry.136252067", JSON.stringify(respuestas["entry.136252067"] || ""));
 
   console.log(...formData.entries());  // Verifica los valores en formData
 
