@@ -126,6 +126,11 @@ class PreguntaOpcionMultiple {
       const label = document.createElement("p");
       label.textContent = opcion.texto;
 
+      // Comprobar si esta opción ya fue seleccionada
+      if (respuestas[this.questionId] === opcion.texto) {
+        optionElement.classList.add("selected");
+      }
+
       // Guardar la selección al hacer clic
       optionElement.addEventListener("click", () => {
         respuestas[this.questionId] = opcion.texto;
@@ -245,7 +250,6 @@ function mostrarPantallaConfirmacion() {
   questionContainer.appendChild(container);
 }
 
-// Enviar todas las respuestas al formulario
 function enviarRespuestas() {
   const formData = new FormData();
 
@@ -262,6 +266,11 @@ function enviarRespuestas() {
     return;
   }
 
+  for (const [key, value] of formData.entries()) {
+    console.log(key, value);
+  }  
+
+  // Enviar los datos a Google Forms
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
     method: "POST",
     body: formData,
@@ -275,6 +284,7 @@ function enviarRespuestas() {
   })
   .catch(err => console.error("Error al enviar respuestas: ", err));
 }
+
 
 // Nueva función para mostrar la pantalla de agradecimiento
 function mostrarPantallaAgradecimiento() {
