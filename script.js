@@ -170,7 +170,7 @@ function mostrarPreguntaMemeIconico() {
   const opciones = [
     { texto: "Bien hecho sobrino hoy te kcho el doble", imagen: "FORMULARIO/meme_1.png" },
     { texto: "Drevox sueño", imagen: "FORMULARIO/meme_2.png" },
-    { texto: "DrevoxCrazy", imagen: "FORMULARIO/meme_3.png" },
+    { texto: "DrevoxCrazy", imagen: "FORMULARIO/MegoPunch.gif" },
     { texto: "EllayaEntroYo", imagen: "FORMULARIO/meme_4.png" },
     { texto: "Nai Nai Nai", imagen: "FORMULARIO/meme_5.png" },
     { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
@@ -250,41 +250,42 @@ function mostrarPantallaConfirmacion() {
   questionContainer.appendChild(container);
 }
 
+// Función para enviar respuestas (ajustada para index.html si prefieres no usar encuesta.html)
 function enviarRespuestas() {
+  console.log(respuestas);  // Verifica el contenido del objeto antes de enviar
   const formData = new FormData();
 
-  // Añadir todas las respuestas al formData
-  for (const [questionId, respuesta] of Object.entries(respuestas)) {
-    if (respuesta.trim() !== "") {
-      formData.append(questionId, respuesta);
-    }
-  }
+  // Añadir respuestas a formData
+  formData.append("entry.1976024462", respuestas["entry.1976024462"] || "");
+  formData.append("entry.813796303", respuestas["entry.813796303"] || "");
+  formData.append("entry.947596321", respuestas["entry.947596321"] || "");
+  formData.append("entry.219126118", respuestas["entry.219126118"] || "");
+  formData.append("entry.1820309658", respuestas["entry.1820309658"] || "");
+  formData.append("entry.383688201", respuestas["entry.383688201"] || "");
+  formData.append("entry.136252067", respuestas["entry.136252067"] || "");
+
+  console.log(...formData.entries());  // Verifica los valores en formData
 
   // Verificar si hay respuestas antes de enviar
-  if (formData.entries().next().done) {
+  const hayRespuestas = Object.values(respuestas).some(respuesta => respuesta.trim() !== "");
+
+  if (!hayRespuestas) {
     alert("No puedes enviar respuestas vacías.");
     return;
   }
 
-  for (const [key, value] of formData.entries()) {
-    console.log(key, value);
-  }  
-
-  // Enviar los datos a Google Forms
-  fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
+  // Enviar datos a Google Forms
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse", {
     method: "POST",
     body: formData,
-    
+    mode: "no-cors"  // Evitar bloqueos CORS
   })
   .then(() => {
     console.log("Respuestas enviadas exitosamente.");
-    mostrarPantallaAgradecimiento();
-    // Marcar en localStorage que ya se votó
-    localStorage.setItem("votoRealizado", "true");
+    mostrarPantallaAgradecimiento(); // Función para mostrar mensaje de agradecimiento
   })
-  .catch(err => console.error("Error al enviar respuestas: ", err));
+  .catch(err => console.error("Error al enviar respuestas:", err));
 }
-
 
 // Nueva función para mostrar la pantalla de agradecimiento
 function mostrarPantallaAgradecimiento() {

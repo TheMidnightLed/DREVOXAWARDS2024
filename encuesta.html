@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta Drevox Awards 2024</title>
+  <link rel="stylesheet" href="styles.css">  <!-- Se incluye el mismo archivo CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="form-screen" class="screen">
+    <div class="header-bar">DREVOX AWARDS 2024</div>
+
+    <!-- Formulario de la encuesta -->
+    <div id="question-container">
+      <div>
+        <label for="clip-favorito">¿Cuál es tu clip favorito?</label>
+        <input type="text" id="clip-favorito">
+      </div>
+      <div>
+        <label for="clip-cringe">¿Cuál es tu clip más cringe?</label>
+        <input type="text" id="clip-cringe">
+      </div>
+      <div>
+        <label for="evento-iconico">¿Cuál fue el evento más icónico de la comunidad (o del chat)?</label>
+        <input type="text" id="evento-iconico">
+      </div>
+      <!-- Agrega más preguntas aquí si es necesario -->
+    </div>
+
+    <!-- Formulario oculto para enviar respuestas a Google Forms -->
+    <form id="google-form" action="https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse" method="POST" target="_self">
+      <input type="hidden" name="entry.1976024462" id="entry1976024462">
+      <input type="hidden" name="entry.813796303" id="entry813796303">
+      <input type="hidden" name="entry.947596321" id="entry947596321">
+      <input type="hidden" name="entry.219126118" id="entry219126118">
+      <input type="hidden" name="entry.1820309658" id="entry1820309658">
+      <input type="hidden" name="entry.383688201" id="entry383688201">
+      <input type="hidden" name="entry.136252067" id="entry136252067">
+      <!-- Agrega más inputs ocultos si es necesario -->
+      <button type="submit" id="submit-button">Enviar Respuestas</button>
+    </form>
+  </div>
+
+  <script>
+    // Almacenar respuestas en un objeto
+    const respuestas = {};
+
+    // Función para asignar respuestas a los campos ocultos y enviar el formulario
+    function enviarRespuestas() {
+      respuestas["entry.1976024462"] = document.getElementById("clip-favorito").value;
+      respuestas["entry.813796303"] = document.getElementById("clip-cringe").value;
+      respuestas["entry.947596321"] = document.getElementById("evento-iconico").value;
+      
+    
+
+      // Asignar las respuestas a los campos ocultos del formulario
+      document.getElementById("entry1976024462").value = respuestas["entry.1976024462"] || "";
+      document.getElementById("entry813796303").value = respuestas["entry.813796303"] || "";
+      document.getElementById("entry.947596321").value = respuestas["entry.947596321"] || "";
+
+
+      // Enviar el formulario de Google Forms
+      document.getElementById("google-form").submit();
+    }
+
+    // Evento para enviar respuestas al hacer clic en el botón
+    document.getElementById("submit-button").addEventListener("click", function(event) {
+      event.preventDefault();  // Prevenir el comportamiento por defecto del formulario
+      enviarRespuestas();      // Llamar a la función para enviar
+    });
+  </script>
+</body>
+</html>
