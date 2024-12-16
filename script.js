@@ -280,6 +280,7 @@ function mostrarPreguntaShipIconico() {
     { texto: "JHESSVROX (JHESS x DREVOX)", imagen: "FORMULARIO/ship_2.png"},
     { texto: "RAIIXANDRA (RAII x ALEXANDRA)", imagen: "FORMULARIO/ship_3.png"},
     { texto: "ALEXAVYXD (ALEXANDRA x D3IVY)", imagen: "FORMULARIO/ship_4.png"},
+    { texto: "CLAVOX (SEÑORA CLARA x DREVOX)", imagen: "FORMULARIO/ship_5.png"},
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506"), mostrarPreguntaMayorRobo, mostrarPreguntaModAplicado)
@@ -540,3 +541,35 @@ document.getElementById("start-button").addEventListener("click", () => {
     mostrarPreguntaClipFavorito();
   }, 1000);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("background-music");
+  const particleContainer = document.getElementById("particles-js");
+  let isBeat = false;
+
+  // Controlar el volumen del audio (ajústalo a tu preferencia)
+  audio.volume = 0.05;
+
+  // Configurar el intervalo para el tempo de 90 BPM (666.67 ms por beat)
+  setInterval(() => {
+    isBeat = !isBeat;
+    animateParticles(isBeat);
+  }, 666.67);
+
+  // Función para animar las partículas en el beat
+  function animateParticles(isBeat) {
+    if (isBeat) {
+      // Aumentar tamaño de partículas rápidamente
+      particleContainer.style.transform = "scale(1.1)";
+    } else {
+      // Reducir tamaño a la normalidad
+      particleContainer.style.transform = "scale(1)";
+    }
+  }
+});
+
+document.getElementById("start-button").addEventListener("click", () => {
+  const audio = document.getElementById("background-music");
+  audio.play(); // Inicia la música cuando se hace clic en el botón
+});
+
