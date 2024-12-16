@@ -176,7 +176,7 @@ function mostrarPreguntaMemeIconico() {
     { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico", opciones, "entry.219126118"), mostrarPreguntaMejorColaboracion, mostrarPreguntaEventoIconico);
+  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico del Canal", opciones, "entry.219126118"), mostrarPreguntaMejorColaboracion, mostrarPreguntaEventoIconico);
 }
 
 function mostrarPreguntaMejorColaboracion() {
@@ -187,7 +187,7 @@ function mostrarPreguntaMejorColaboracion() {
     { texto: "LaGatoPe x Hardcore", imagen: "FORMULARIO/colaboracion_4.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.1820309658"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración del Canal", opciones, "entry.1820309658"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
 }
 
 function mostrarPreguntaBaneadoFavorito() {
@@ -197,7 +197,7 @@ function mostrarPreguntaBaneadoFavorito() {
     { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito", opciones, "entry.383688201"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
+  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito del Canal", opciones, "entry.383688201"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
 }
 
 function mostrarPreguntaViewerMasFiel() {
@@ -210,7 +210,100 @@ function mostrarPreguntaViewerMasFiel() {
     { texto: "JOSHUA_OUO", imagen: "FORMULARIO/viewer_6.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.136252067"), mostrarPantallaConfirmacion, mostrarPreguntaBaneadoFavorito);
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.136252067"), mostrarPreguntaMejorApoyo, mostrarPreguntaBaneadoFavorito);
+}
+
+function mostrarPreguntaMejorApoyo() {
+  const opciones = [
+    { texto: "JAXZZER", imagen: "FORMULARIO/apoyo_1.png"},
+    { texto: "THEMIDNIGHTLED", imagen: "FORMULARIO/apoyo_2.png"},
+    { texto: "DAVID", imagen: "FORMULARIO/apoyo_3.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer que más Apoyó al Canal", opciones, "entry.1823896014"), mostrarPreguntaMejorVIP, mostrarPreguntaViewerMasFiel)
+}
+
+function mostrarPreguntaMejorVIP() {
+  const opciones = [
+    { texto: "THEMIDNIGHTLED", imagen: "FORMULARIO/vip_1.png"},
+    { texto: "FELIPE", imagen: "FORMULARIO/vip_2.jpeg"},
+    { texto: "V0LTA", imagen: "FORMULARIO/vip_3.jpeg"},
+    { texto: "ELGANCHOS", imagen: "FORMULARIO/vip_4.png"},
+    { texto: "DAVID", imagen: "FORMULARIO/vip_5.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor VIP del Canal", opciones, "entry.170597404"), mostrarPreguntaModFavorito, mostrarPreguntaMejorApoyo)
+}
+
+function mostrarPreguntaModFavorito() {
+  const opciones = [
+    { texto: "RAII", imagen: "FORMULARIO/mod_1.png"},
+    { texto: "MEMAS", imagen: "FORMULARIO/mod_2.png"},
+    { texto: "MICACHERAZO", imagen: "FORMULARIO/mod_3.png"},
+    { texto: "YVONNE_OUO", imagen: "FORMULARIO/mod_4.png"},
+    { texto: "AQUISIU", imagen: "FORMULARIO/mod_5.png"},
+    { texto: "ALEXANDRA", imagen: "FORMULARIO/mod_6.png"},
+    { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
+    { texto: "RENZO", imagen: "FORMULARIO/mod_8.png"},
+  ];
+  
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod Favorito del Canal", opciones, "entry.1941000340"), mostrarPreguntaModLFavorito, mostrarPreguntaMejorVIP)
+}
+
+function mostrarPreguntaModLFavorito() {
+  const opciones = [
+    { texto: "RAII", imagen: "FORMULARIO/mod_1.png"},
+    { texto: "MEMAS", imagen: "FORMULARIO/mod_2.png"},
+    { texto: "MICACHERAZO", imagen: "FORMULARIO/mod_3.png"},
+    { texto: "YVONNE_OUO", imagen: "FORMULARIO/mod_4.png"},
+    { texto: "AQUISIU", imagen: "FORMULARIO/mod_5.png"},
+    { texto: "ALEXANDRA", imagen: "FORMULARIO/mod_6.png"},
+    { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
+    { texto: "RENZO", imagen: "FORMULARIO/mod_8.png"},
+  ];
+  
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod menos Favorito del Canal", opciones, "entry.1154734700"), mostrarPreguntaModAplicado, mostrarPreguntaModFavorito)
+}
+
+function mostrarPreguntaModAplicado() {
+  const opciones = [
+    { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
+    { texto: "MEMAS", imagen: "FORMULARIO/mod_2.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod más Aplicado del Canal", opciones, "entry.699149284"), mostrarPreguntaShipIconico, mostrarPreguntaModLFavorito)
+}
+
+function mostrarPreguntaShipIconico() {
+  const opciones = [
+    { texto: "ROICKXANDRA (ROICK x ALEXANDRA)", imagen: "FORMULARIO/ship_1.png"},
+    { texto: "JHESSVROX (JHESS x DREVOX)", imagen: "FORMULARIO/ship_2.png"},
+    { texto: "RAIIXANDRA (RAII x ALEXANDRA)", imagen: "FORMULARIO/ship_3.png"},
+    { texto: "ALEXAVYXD (ALEXANDRA x D3IVY)", imagen: "FORMULARIO/ship_4.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506"), mostrarPreguntaMayorRobo, mostrarPreguntaModAplicado)
+}
+
+function mostrarPreguntaMayorRobo() {
+  const opciones = [
+    { texto: "Premio al GOTY para Astromrd", imagen: "FORMULARIO/robo_1.png"},
+    { texto: "Horas comidas del extensible", imagen: "FORMULARIO/robo_2.jpg"},
+    { texto: "Incidente: Pax y el cuarto de pollo", imagen: "FORMULARIO/robo_3.jpg"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Robo del Año", opciones, "entry.491190079"), mostrarPreguntaJuegoQuemado, mostrarPreguntaShipIconico)
+}
+
+function mostrarPreguntaJuegoQuemado() {
+  const opciones = [
+    { texto: "FORTNITE", imagen: "FORMULARIO/juego_1.png"},
+    { texto: "VALORANT", imagen: "FORMULARIO/juego_2.jpeg"},
+    { texto: "LOL (LEAGUE OF LEGENDS)", imagen: "FORMULARIO/juego_3.jpeg"},
+    { texto: "LEFT 4 DEAD 2", imagen: "FORMULARIO/juego_4.jpg"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Juego más Quemado del Año", opciones, "entry.674454907"), mostrarPantallaConfirmacion, mostrarPreguntaMayorRobo)
 }
 
 // Función para mostrar una pregunta genérica
