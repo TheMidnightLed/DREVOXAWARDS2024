@@ -303,8 +303,123 @@ function mostrarPreguntaJuegoQuemado() {
     { texto: "LEFT 4 DEAD 2", imagen: "FORMULARIO/juego_4.jpg"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Juego más Quemado del Año", opciones, "entry.674454907"), mostrarPantallaConfirmacion, mostrarPreguntaMayorRobo)
+  mostrarPregunta(new PreguntaOpcionMultiple("Juego más Quemado del Año", opciones, "entry.674454907"), mostrarPreguntaCampañaDeseada, mostrarPreguntaMayorRobo)
 }
+
+function mostrarPreguntaCampañaDeseada() {
+  const opciones = [
+    { texto: "SILENT HILL 2", imagen: "FORMULARIO/campaña_1.png"},
+    { texto: "INDIANA JONES", imagen: "FORMULARIO/campaña_2.png"},
+    { texto: "GOD OF WAR", imagen: "FORMULARIO/campaña_3.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Campaña más Deseada del Año", opciones, "entry.2057661012"), mostrarPreguntaMejorSerie, mostrarPreguntaJuegoQuemado)
+}
+
+function mostrarPreguntaMejorSerie() {
+  const opciones = [
+    { texto: "GRAVITY FALLS", imagen: "FORMULARIO/serie_1.png"},
+    { texto: "ONE PIECE", imagen: "FORMULARIO/serie_2.png"},
+    { texto: "DRAGON BALL DAIMA", imagen: "FORMULARIO/serie_3.png"},
+    { texto: "CYBERPUNK: EDGERUNNERS", imagen: "FORMULARIO/serie_4.png"},
+    { texto: "INVINCIBLE", imagen: "FORMULARIO/serie_5.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Serie del Año", opciones, "entry.1052283597"), mostrarPreguntaMejorDonador, mostrarPreguntaCampañaDeseada)
+}
+
+function mostrarPreguntaMejorDonador() {
+  const opciones = [
+    { texto: "MICACHERAZO", imagen: "FORMULARIO/donador_1.png"},
+    { texto: "DAVID", imagen: "FORMULARIO/donador_2.png"},
+    { texto: "MILANESA", imagen: "FORMULARIO/donador_3.png"},
+    { texto: "GYBRAM", imagen: "FORMULARIO/donador_4.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Donador del Canal", opciones, "entry.1944514333"), mostrarPreguntaMejorDinamica, mostrarPreguntaMejorSerie)
+}
+
+function mostrarPreguntaMejorDinamica() {
+  const opciones = [
+    { texto: "MOCACHIMBA RACER", imagen: "FORMULARIO/dinamica_1.png"},
+    { texto: "SI ME HACES REIR", imagen: "FORMULARIO/dinamica_2.png"},
+    { texto: "SPOTIFY WRAPPED", imagen: "FORMULARIO/dinamica_3.png"},
+    { texto: "TWITCH RECAP", imagen: "FORMULARIO/dinamica_4.png"},
+    { texto: "KARAOKE", imagen: "FORMULARIO/dinamica_5.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Dinámica del Canal", opciones, "entry.1246182248"), mostrarPreguntaMejorCampaña, mostrarPreguntaMejorDonador)
+}
+
+function mostrarPreguntaMejorCampaña() {
+  const opciones = [
+    { texto: "BLACK MYTH: WUKONG", imagen: "FORMULARIO/mcampaña_1.png"},
+    { texto: "DARK SOULS III", imagen: "FORMULARIO/mcampaña_2.png"},
+    { texto: "SOUTH PARK: THE FRACTURED BUT WHOLE", imagen: "FORMULARIO/mcampaña_3.png"},
+    { texto: "CATHERINE CLASSIC", imagen: "FORMULARIO/mcampaña_4.png"},
+    { texto: "FNAF: INTO THE PIT", imagen: "FORMULARIO/mcampaña_5.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Campaña del Canal", opciones, "entry.1996664871"), mostrarPreguntaRevientahigados, mostrarPreguntaMejorDinamica)
+}
+
+function mostrarPreguntaRevientahigados() {
+  const opciones = [
+    { texto: "ALTRIX", imagen: "FORMULARIO/higado_1.png"},
+    { texto: "LEGOLAZ", imagen: "FORMULARIO/higado_2.png"},
+    { texto: "LEGEND", imagen: "FORMULARIO/higado_3.png"},
+    { texto: "FELIPE", imagen: "FORMULARIO/higado_4.png"},
+    { texto: "CARLPOLL", imagen: "FORMULARIO/higado_5.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Reventador de Higados del Canal", opciones, "entry.670098138"), mostrarPreguntaMechaCorta, mostrarPreguntaMejorCampaña)
+}
+
+function mostrarPreguntaMechaCorta() {
+  const opciones = [
+    { texto: "RAWDED", imagen: "FORMULARIO/mecha_1.png"},
+    { texto: "DARKNESS", imagen: "FORMULARIO/mecha_2.png"},
+    { texto: "JEFFRY", imagen: "FORMULARIO/mecha_3.png"},
+    { texto: "TONY", imagen: "FORMULARIO/mecha_4.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726240007"), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
+}
+
+function mostrarPreguntaEnemigoStreamer() {
+  const opciones = [
+    { texto: "ARMANDO", imagen: "FORMULARIO/streamer_1.png"},
+    { texto: "TRIPLEX", imagen: "FORMULARIO/streamer_2.png"},
+    { texto: "TUPAPRUX", imagen: "FORMULARIO/streamer_3.png"},
+    { texto: "FLECK", imagen: "FORMULARIO/streamer_4.png"},
+    { texto: "KITADARGO", imagen: "FORMULARIO/streamer_5.png"},
+    { texto: "KUZCOPLAY", imagen: "FORMULARIO/streamer_6.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Enemigo Favorito del Streamer", opciones, "entry.575345266"), mostrarPreguntaVillanoHater, mostrarPreguntaMechaCorta)
+}
+
+function mostrarPreguntaVillanoHater() {
+  const opciones = [
+    { texto: "TONY", imagen: "FORMULARIO/villano_1.png"},
+    { texto: "SONXDARK", imagen: "FORMULARIO/villano_2.png"},
+    { texto: "DARKNESS", imagen: "FORMULARIO/villano_3.png"},
+    { texto: "ROICK", imagen: "FORMULARIO/villano_4.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Villano/Hater del Canal", opciones, "entry.1212348438"), mostrarPreguntaTryhard, mostrarPreguntaEnemigoStreamer)
+}
+
+function mostrarPreguntaTryhard() {
+  const opciones = [
+    { texto: "JEFFRY", imagen: "FORMULARIO/tryhard_1.png"},
+    { texto: "DARKNESS", imagen: "FORMULARIO/tryhard_2.png"},
+    { texto: "SONXDARK", imagen: "FORMULARIO/tryhard_3.png"},
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Tryhard del Canal", opciones, "entry.1947741075"), mostrarPantallaConfirmacion, mostrarPreguntaVillanoHater)
+}
+
 
 // Función para mostrar una pregunta genérica
 function mostrarPregunta(pregunta, onNext, onPrevious) {
@@ -355,6 +470,24 @@ function enviarRespuestas() {
   params.append("entry.1820309658", respuestas["entry.1820309658"] || "");
   params.append("entry.383688201", respuestas["entry.383688201"] || "");
   params.append("entry.136252067", respuestas["entry.136252067"] || "");
+  params.append("entry.1823896014", respuestas["entry.1823896014"] || "");
+  params.append("entry.170597404", respuestas["entry.170597404"] || "");
+  params.append("entry.1941000340", respuestas["entry.1941000340"] || "");
+  params.append("entry.1154734700", respuestas["entry.1154734700"] || "");
+  params.append("entry.699149284", respuestas["entry.699149284"] || "");
+  params.append("entry.2080205506", respuestas["entry.2080205506"] || "");
+  params.append("entry.491190079", respuestas["entry.491190079"] || "");
+  params.append("entry.674454907", respuestas["entry.674454907"] || "");
+  params.append("entry.2057661012", respuestas["entry.2057661012"] || "");
+  params.append("entry.1052283597", respuestas["entry.1052283597"] || "");
+  params.append("entry.1944514333", respuestas["entry.1944514333"] || "");
+  params.append("entry.1246182248", respuestas["entry.1246182248"] || "");
+  params.append("entry.1996664871", respuestas["entry.1996664871"] || "");
+  params.append("entry.670098138", respuestas["entry.670098138"] || "");
+  params.append("entry.1726240007", respuestas["entry.1726240007"] || "");
+  params.append("entry.575345266", respuestas["entry.575345266"] || "");
+  params.append("entry.1212348438", respuestas["entry.1212348438"] || "");
+  params.append("entry.1947741075", respuestas["entry.1947741075"] || "");
 
   const finalUrl = `${baseUrl}?${params.toString()}`;
   console.log("Redirigiendo a:", finalUrl);
