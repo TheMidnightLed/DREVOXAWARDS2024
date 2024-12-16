@@ -265,9 +265,8 @@ function enviarRespuestas() {
   formUrl.searchParams.append("entry.136252067", respuestas["entry.136252067"] || "");
 
   // Redirigir a la URL con los parámetros
-  console.log("Redireccionando a:", formUrl.toString());
   window.location.href = formUrl.toString();
-
+  
   // Añadir respuestas a formData como cadenas JSON
   formData.append("entry.1976024462", JSON.stringify(respuestas["entry.1976024462"] || ""));
   formData.append("entry.813796303", JSON.stringify(respuestas["entry.813796303"] || ""));
