@@ -393,7 +393,7 @@ function mostrarPreguntaEnemigoStreamer() {
     { texto: "TRIPLEX", imagen: "FORMULARIO/streamer_2.png"},
     { texto: "TUPAPRUX", imagen: "FORMULARIO/streamer_3.png"},
     { texto: "FLECK", imagen: "FORMULARIO/streamer_4.png"},
-    { texto: "KITADARGO", imagen: "FORMULARIO/streamer_5.png"},
+    { texto: "KITADARGO", imagen: "FORMULARIO/streamer_5.jpeg"},
     { texto: "KUZCOPLAY", imagen: "FORMULARIO/streamer_6.png"},
   ];
 
