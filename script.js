@@ -346,6 +346,7 @@ function mostrarPreguntaMejorDinamica() {
     { texto: "SPOTIFY WRAPPED", imagen: "FORMULARIO/dinamica_3.png"},
     { texto: "TWITCH RECAP", imagen: "FORMULARIO/dinamica_4.png"},
     { texto: "KARAOKE", imagen: "FORMULARIO/dinamica_5.png"},
+    { texto: "CONFESATORIO CON LA DREVOXITA", imagen: "FORMULARIO/dinamica_6.png"}
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Mejor Dinámica del Canal", opciones, "entry.1246182248"), mostrarPreguntaMejorCampaña, mostrarPreguntaMejorDonador)
@@ -368,7 +369,7 @@ function mostrarPreguntaRevientahigados() {
     { texto: "ALTRIX", imagen: "FORMULARIO/higado_1.png"},
     { texto: "LEGOLAZ", imagen: "FORMULARIO/higado_2.png"},
     { texto: "LEGEND", imagen: "FORMULARIO/higado_3.png"},
-    { texto: "FELIPE", imagen: "FORMULARIO/higado_4.png"},
+    { texto: "FELIPE", imagen: "FORMULARIO/higado_4.jpeg"},
     { texto: "CARLPOLL", imagen: "FORMULARIO/higado_5.png"},
   ];
 
