@@ -300,7 +300,7 @@ function mostrarPreguntaJuegoQuemado() {
     { texto: "FORTNITE", imagen: "FORMULARIO/juego_1.png"},
     { texto: "VALORANT", imagen: "FORMULARIO/juego_2.jpeg"},
     { texto: "LOL (LEAGUE OF LEGENDS)", imagen: "FORMULARIO/juego_3.jpeg"},
-    { texto: "LEFT 4 DEAD 2", imagen: "FORMULARIO/juego_4.jpg"},
+    { texto: "LEFT 4 DEAD 2", imagen: "FORMULARIO/juego_4.png"},
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Juego más Quemado del Año", opciones, "entry.674454907"), mostrarPreguntaCampañaDeseada, mostrarPreguntaMayorRobo)
