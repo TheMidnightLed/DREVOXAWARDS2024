@@ -92,6 +92,128 @@ function mostrarPreguntaEventoIconico() {
   questionContainer.appendChild(pregunta.render(mostrarPantallaConfirmacion, mostrarPreguntaClipCringe));
 }
 
+// Clase para preguntas de opción múltiple
+class PreguntaOpcionMultiple {
+  constructor(categoria, opciones, questionId) {
+    this.categoria = categoria;
+    this.opciones = opciones; // Array de objetos { texto: "nombre", imagen: "ruta" }
+    this.questionId = questionId;
+  }
+
+  render(onNext, onPrevious) {
+    const container = document.createElement("div");
+    container.classList.add("question");
+
+    // Título de la pregunta
+    const title = document.createElement("h2");
+    title.textContent = this.categoria;
+    container.appendChild(title);
+
+    // Contenedor para las opciones
+    const optionsContainer = document.createElement("div");
+    optionsContainer.classList.add("options-container");
+
+    this.opciones.forEach((opcion, index) => {
+      const optionElement = document.createElement("div");
+      optionElement.classList.add("option");
+
+      // Imagen de la opción
+      const img = document.createElement("img");
+      img.src = opcion.imagen;
+      img.alt = opcion.texto;
+
+      // Texto de la opción
+      const label = document.createElement("p");
+      label.textContent = opcion.texto;
+
+      // Guardar la selección al hacer clic
+      optionElement.addEventListener("click", () => {
+        respuestas[this.questionId] = opcion.texto;
+        document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+        optionElement.classList.add("selected");
+      });
+
+      optionElement.appendChild(img);
+      optionElement.appendChild(label);
+      optionsContainer.appendChild(optionElement);
+    });
+
+    container.appendChild(optionsContainer);
+
+    // Botones de navegación
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("navigation-buttons");
+
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Siguiente";
+    nextButton.addEventListener("click", onNext);
+
+    const prevButton = document.createElement("button");
+    prevButton.textContent = "Anterior";
+    prevButton.addEventListener("click", onPrevious);
+
+    buttonContainer.appendChild(prevButton);
+    buttonContainer.appendChild(nextButton);
+    container.appendChild(buttonContainer);
+
+    return container;
+  }
+}
+
+// Funciones para mostrar cada pregunta de opción múltiple
+function mostrarPreguntaMemeIconico() {
+  const opciones = [
+    { texto: "Bien hecho sobrino hoy te kcho el doble", imagen: "FORMULARIO/meme_1.png" },
+    { texto: "Drevox sueño", imagen: "FORMULARIO/meme_2.png" },
+    { texto: "DrevoxCrazy", imagen: "FORMULARIO/meme_3.png" },
+    { texto: "EllayaEntroYo", imagen: "FORMULARIO/meme_4.png" },
+    { texto: "Nai Nai Nai", imagen: "FORMULARIO/meme_5.png" },
+    { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico", opciones, "entry.123456789"), mostrarPreguntaMejorColaboracion);
+}
+
+function mostrarPreguntaMejorColaboracion() {
+  const opciones = [
+    { texto: "Cera caliente (Drevox y la señorita)", imagen: "FORMULARIO/colaboracion_1.png" },
+    { texto: "Cospobre (Drevox y Armando)", imagen: "FORMULARIO/colaboracion_2.png" },
+    { texto: "Collab de Slots (Drevox, Ganchos y JhessCC)", imagen: "FORMULARIO/colaboracion_3.png" },
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Colaboración", opciones, "entry.987654321"), mostrarPreguntaBaneadoFavorito, mostrarPreguntaMemeIconico);
+}
+
+function mostrarPreguntaBaneadoFavorito() {
+  const opciones = [
+    { texto: "Astronita", imagen: "FORMULARIO/baneado_1.jpg" },
+    { texto: "Zapatitos Amarillos", imagen: "FORMULARIO/baneado_2.jpg" },
+    { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.jpeg" },
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito", opciones, "entry.456789123"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
+}
+
+function mostrarPreguntaViewerMasFiel() {
+  const opciones = [
+    { texto: "LIFENATURAL", imagen: "FORMULARIO/viewer_1.png" },
+    { texto: "FELIPE", imagen: "FORMULARIO/viewer_2.png" },
+    { texto: "THEMIDNIGHTLED", imagen: "FORMULARIO/viewer_3.png" },
+    { texto: "V0LTA", imagen: "FORMULARIO/viewer_4.png" },
+    { texto: "THXA67", imagen: "FORMULARIO/viewer_5.png" },
+    { texto: "JOSHUA_OUO", imagen: "FORMULARIO/viewer_6.png" },
+  ];
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.654321987"), mostrarPantallaConfirmacion, mostrarPreguntaBaneadoFavorito);
+}
+
+// Función para mostrar una pregunta genérica
+function mostrarPregunta(pregunta, onNext, onPrevious) {
+  const questionContainer = document.getElementById("question-container");
+  questionContainer.innerHTML = "";
+  questionContainer.appendChild(pregunta.render(onNext, onPrevious));
+}
+
 // Mostrar pantalla de confirmación
 function mostrarPantallaConfirmacion() {
   const questionContainer = document.getElementById("question-container");
