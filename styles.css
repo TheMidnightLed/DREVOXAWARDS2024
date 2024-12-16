@@ -197,6 +197,7 @@ textarea::placeholder {
 }
 
 .option {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,20 +206,64 @@ textarea::placeholder {
   padding: 10px;
   transition: border-color 0.3s;
   max-width: 150px;
+  overflow: hidden;
 }
 
+/* Imagen dentro de cada opción */
 .option img {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 10px;
+  transition: transform 0.2s;
 }
 
+/* Texto de la opción */
 .option p {
   text-align: center;
   font-size: 16px;
+  margin-top: 10px;
 }
 
+/* Efecto hover: capa morada translúcida */
+.option::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 0, 128, 0.4); /* Morado translúcido */
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 8px;
+}
+
+/* Mostrar la capa morada al hacer hover */
+.option:hover::before {
+  opacity: 1;
+}
+
+/* Agregar imagen de check al seleccionar */
+.option::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("FORMULARIO/check.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Mostrar el check al seleccionar */
+.option.selected::after {
+  opacity: 1;
+}
+
+/* Resaltar el borde cuando una opción está seleccionada */
 .option.selected {
   border-color: #007bff;
 }
