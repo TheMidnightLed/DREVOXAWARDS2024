@@ -232,7 +232,7 @@ textarea::placeholder {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(128, 0, 128, 0.4); /* Morado translúcido */
+  background-color: rgba(106, 13, 173, 0.4); /* Morado translúcido */
   opacity: 0;
   transition: opacity 0.3s;
   border-radius: 8px;
