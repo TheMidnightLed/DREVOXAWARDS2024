@@ -252,7 +252,7 @@ function mostrarPantallaConfirmacion() {
 
 // Función para enviar respuestas construyendo la URL con parámetros pre-rellenados
 function enviarRespuestas() {
-  const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse";
+  const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/viewform";
 
   const params = new URLSearchParams();
   params.append("entry.1976024462", respuestas["entry.1976024462"] || "");
