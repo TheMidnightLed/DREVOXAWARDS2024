@@ -253,7 +253,21 @@ function mostrarPantallaConfirmacion() {
 // Función para enviar respuestas (ajustada para index.html si prefieres no usar encuesta.html)
 function enviarRespuestas() {
   console.log(respuestas);  // Verifica el contenido del objeto antes de enviar
-  
+  const formData = new FormData();
+  const formUrl = new URL("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse");
+
+  formUrl.searchParams.append("entry.1976024462", respuestas["entry.1976024462"] || "");
+  formUrl.searchParams.append("entry.813796303", respuestas["entry.813796303"] || "");
+  formUrl.searchParams.append("entry.947596321", respuestas["entry.947596321"] || "");
+  formUrl.searchParams.append("entry.219126118", respuestas["entry.219126118"] || "");
+  formUrl.searchParams.append("entry.1820309658", respuestas["entry.1820309658"] || "");
+  formUrl.searchParams.append("entry.383688201", respuestas["entry.383688201"] || "");
+  formUrl.searchParams.append("entry.136252067", respuestas["entry.136252067"] || "");
+
+  // Redirigir a la URL con los parámetros
+  console.log("Redireccionando a:", formUrl.toString());
+  window.location.href = formUrl.toString();
+
   // Añadir respuestas a formData como cadenas JSON
   formData.append("entry.1976024462", JSON.stringify(respuestas["entry.1976024462"] || ""));
   formData.append("entry.813796303", JSON.stringify(respuestas["entry.813796303"] || ""));
@@ -284,22 +298,6 @@ function enviarRespuestas() {
     mostrarPantallaAgradecimiento(); // Función para mostrar mensaje de agradecimiento
   })
   .catch(err => console.error("Error al enviar respuestas:", err));
-
-  const formData = new FormData();
-  const formUrl = new URL("https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/formResponse");
-
-  formUrl.searchParams.append("entry.1976024462", respuestas["entry.1976024462"] || "");
-  formUrl.searchParams.append("entry.813796303", respuestas["entry.813796303"] || "");
-  formUrl.searchParams.append("entry.947596321", respuestas["entry.947596321"] || "");
-  formUrl.searchParams.append("entry.219126118", respuestas["entry.219126118"] || "");
-  formUrl.searchParams.append("entry.1820309658", respuestas["entry.1820309658"] || "");
-  formUrl.searchParams.append("entry.383688201", respuestas["entry.383688201"] || "");
-  formUrl.searchParams.append("entry.136252067", respuestas["entry.136252067"] || "");
-
-  // Redirigir a la URL con los parámetros
-  console.log("Redireccionando a:", formUrl.toString());
-  window.location.href = formUrl.toString();
-
 }
 
 // Nueva función para mostrar la pantalla de agradecimiento
