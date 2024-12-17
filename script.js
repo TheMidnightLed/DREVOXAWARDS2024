@@ -94,10 +94,11 @@ function mostrarPreguntaEventoIconico() {
 
 // Clase para preguntas de opción múltiple
 class PreguntaOpcionMultiple {
-  constructor(categoria, opciones, questionId) {
+  constructor(categoria, opciones, questionId, textoAclarativo) { // Agregado textoAclarativo como parámetro
     this.categoria = categoria;
-    this.opciones = opciones; // Array de objetos { texto: "nombre", imagen: "ruta" }
+    this.opciones = opciones;       // Array de objetos { texto: "nombre", imagen: "ruta" }
     this.questionId = questionId;
+    this.textoAclarativo = textoAclarativo; // Asignar el parámetro a la propiedad de la clase
   }
 
   render(onNext, onPrevious) {
@@ -108,6 +109,14 @@ class PreguntaOpcionMultiple {
     const title = document.createElement("h2");
     title.textContent = this.categoria;
     container.appendChild(title);
+
+    // Texto aclarativo (si existe)
+    if (this.textoAclarativo) {
+      const aclarativo = document.createElement("p");
+      aclarativo.classList.add("texto-aclarativo");
+      aclarativo.textContent = this.textoAclarativo;
+      container.appendChild(aclarativo);
+    }
 
     // Contenedor para las opciones
     const optionsContainer = document.createElement("div");
@@ -165,6 +174,7 @@ class PreguntaOpcionMultiple {
   }
 }
 
+
 // Funciones para mostrar cada pregunta de opción múltiple
 function mostrarPreguntaMemeIconico() {
   const opciones = [
@@ -176,7 +186,17 @@ function mostrarPreguntaMemeIconico() {
     { texto: "Drevoxhunter", imagen: "FORMULARIO/meme_6.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Meme más Icónico del Canal", opciones, "entry.219126118"), mostrarPreguntaMejorColaboracion, mostrarPreguntaEventoIconico);
+  const textoAclarativo = "Frase, referencia o tontería que solo entiende la comunidad"
+
+  mostrarPregunta(
+    new PreguntaOpcionMultiple(
+      "El Meme más Icónico del Canal", 
+      opciones, 
+      "entry.219126118",
+      textoAclarativo
+    ), 
+    mostrarPreguntaMejorColaboracion, 
+    mostrarPreguntaEventoIconico);
 }
 
 function mostrarPreguntaMejorColaboracion() {
@@ -197,7 +217,9 @@ function mostrarPreguntaBaneadoFavorito() {
     { texto: "Vanessa", imagen: "FORMULARIO/baneado_3.png" },
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito del Canal", opciones, "entry.383688201"), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
+  const textoAclarativo = "El que se excedio pasandose de gracioso causando ban al canal"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("El Baneado Favorito del Canal", opciones, "entry.383688201", textoAclarativo), mostrarPreguntaViewerMasFiel, mostrarPreguntaMejorColaboracion);
 }
 
 function mostrarPreguntaViewerMasFiel() {
@@ -208,9 +230,12 @@ function mostrarPreguntaViewerMasFiel() {
     { texto: "V0LTA", imagen: "FORMULARIO/viewer_4.jpeg" },
     { texto: "THXA67", imagen: "FORMULARIO/viewer_5.png" },
     { texto: "JOSHUA_OUO", imagen: "FORMULARIO/viewer_6.png" },
+    { texto: "ELGATU", imagen: "FORMULARIO/viewer_7.jpg"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.136252067"), mostrarPreguntaMejorApoyo, mostrarPreguntaBaneadoFavorito);
+  const textoAclarativo = "El que siempre está en los directos y es 100% leal"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer más Fiel del Canal", opciones, "entry.136252067", textoAclarativo), mostrarPreguntaMejorApoyo, mostrarPreguntaBaneadoFavorito);
 }
 
 function mostrarPreguntaMejorApoyo() {
@@ -220,7 +245,9 @@ function mostrarPreguntaMejorApoyo() {
     { texto: "DAVID", imagen: "FORMULARIO/apoyo_3.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Viewer que más Apoyó al Canal", opciones, "entry.1823896014"), mostrarPreguntaMejorVIP, mostrarPreguntaViewerMasFiel)
+  const textoAclarativo = "Quien brindo más apoyo en el canal con su diversidad cultural (dibujos, participación, se entregó al chow xd)"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Viewer que más Apoyó al Canal", opciones, "entry.1823896014", textoAclarativo), mostrarPreguntaMejorVIP, mostrarPreguntaViewerMasFiel)
 }
 
 function mostrarPreguntaMejorVIP() {
@@ -230,9 +257,12 @@ function mostrarPreguntaMejorVIP() {
     { texto: "V0LTA", imagen: "FORMULARIO/vip_3.jpeg"},
     { texto: "ELGANCHOS", imagen: "FORMULARIO/vip_4.png"},
     { texto: "DAVID", imagen: "FORMULARIO/vip_5.png"},
+    { texto: "LIFENATURAL", imagen: "FORMULARIO/vip_6.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mejor VIP del Canal", opciones, "entry.170597404"), mostrarPreguntaModFavorito, mostrarPreguntaMejorApoyo)
+  const textoAclarativo = "Vip más chévere del año (elegido según observación de un mod)"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor VIP del Canal", opciones, "entry.170597404", textoAclarativo), mostrarPreguntaModFavorito, mostrarPreguntaMejorApoyo)
 }
 
 function mostrarPreguntaModFavorito() {
@@ -245,9 +275,12 @@ function mostrarPreguntaModFavorito() {
     { texto: "ALEXANDRA", imagen: "FORMULARIO/mod_6.png"},
     { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
     { texto: "RENZO", imagen: "FORMULARIO/mod_8.png"},
+    { texto: "ELGATU", imagen: "FORMULARIO/mod_9.jpg"},
   ];
   
-  mostrarPregunta(new PreguntaOpcionMultiple("Mod Favorito del Canal", opciones, "entry.1941000340"), mostrarPreguntaModLFavorito, mostrarPreguntaMejorVIP)
+  const textoAclarativo = "El que hace su trabajo, le cae bien a la gente es chévere y hace reír"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod Favorito del Canal", opciones, "entry.1941000340", textoAclarativo), mostrarPreguntaModLFavorito, mostrarPreguntaMejorVIP)
 }
 
 function mostrarPreguntaModLFavorito() {
@@ -260,9 +293,12 @@ function mostrarPreguntaModLFavorito() {
     { texto: "ALEXANDRA", imagen: "FORMULARIO/mod_6.png"},
     { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
     { texto: "RENZO", imagen: "FORMULARIO/mod_8.png"},
+    { texto: "ELGATU", imagen: "FORMULARIO/mod_9.jpg"},
   ];
   
-  mostrarPregunta(new PreguntaOpcionMultiple("Mod menos Favorito del Canal", opciones, "entry.1154734700"), mostrarPreguntaModAplicado, mostrarPreguntaModFavorito)
+  const textoAclarativo = "El que para hueveando y no merece mod"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod menos Favorito del Canal", opciones, "entry.1154734700", textoAclarativo), mostrarPreguntaModAplicado, mostrarPreguntaModFavorito)
 }
 
 function mostrarPreguntaModAplicado() {
@@ -271,7 +307,9 @@ function mostrarPreguntaModAplicado() {
     { texto: "MEMAS", imagen: "FORMULARIO/mod_2.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mod más Aplicado del Canal", opciones, "entry.699149284"), mostrarPreguntaShipIconico, mostrarPreguntaModLFavorito)
+  const textoAclarativo = "Aquel mod que sabe de comandos y paginas externas para mejorar la moderación del chat, con el de moderador el canal será más seguro"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod más Aplicado del Canal", opciones, "entry.699149284", textoAclarativo), mostrarPreguntaShipIconico, mostrarPreguntaModLFavorito)
 }
 
 function mostrarPreguntaShipIconico() {
@@ -283,7 +321,9 @@ function mostrarPreguntaShipIconico() {
     { texto: "CLAVOX (SEÑORA CLARA x DREVOX)", imagen: "FORMULARIO/ship_5.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506"), mostrarPreguntaMayorRobo, mostrarPreguntaModAplicado)
+  const textoAclarativo = "(Ship = Emparejar a dos personas del chat donde crean que haya tensión)"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506", textoAclarativo), mostrarPreguntaMayorRobo, mostrarPreguntaModAplicado)
 }
 
 function mostrarPreguntaMayorRobo() {
@@ -326,7 +366,9 @@ function mostrarPreguntaMejorSerie() {
     { texto: "INVINCIBLE", imagen: "FORMULARIO/serie_5.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Serie del Año", opciones, "entry.1052283597"), mostrarPreguntaMejorDonador, mostrarPreguntaCampañaDeseada)
+  const textoAclarativo = "Campaña que te hubiera gustado ver pero la mamalona no puso de su parte"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mejor Serie del Año", opciones, "entry.1052283597", textoAclarativo), mostrarPreguntaMejorDonador, mostrarPreguntaCampañaDeseada)
 }
 
 function mostrarPreguntaMejorDonador() {
@@ -385,7 +427,9 @@ function mostrarPreguntaMechaCorta() {
     { texto: "TONY", imagen: "FORMULARIO/mecha_4.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726250007"), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
+  const textoAclarativo = "Persona que no tiene paciencia al jugar en equipo y lo termina gritando"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726250007", textoAclarativo), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
 }
 
 function mostrarPreguntaEnemigoStreamer() {
@@ -398,7 +442,9 @@ function mostrarPreguntaEnemigoStreamer() {
     { texto: "KUZCOPLAY", imagen: "FORMULARIO/streamer_6.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Enemigo Favorito del Streamer", opciones, "entry.575345266"), mostrarPreguntaVillanoHater, mostrarPreguntaMechaCorta)
+  const textoAclarativo = "El que se ganó el odio del streamer"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Enemigo Favorito del Streamer", opciones, "entry.575345266", textoAclarativo), mostrarPreguntaVillanoHater, mostrarPreguntaMechaCorta)
 }
 
 function mostrarPreguntaVillanoHater() {
@@ -409,7 +455,9 @@ function mostrarPreguntaVillanoHater() {
     { texto: "ROICK", imagen: "FORMULARIO/villano_4.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Villano/Hater del Canal", opciones, "entry.1212348438"), mostrarPreguntaTryhard, mostrarPreguntaEnemigoStreamer)
+  const textoAclarativo = "Quien siempre tira hate de broma o arma debates polémicos"
+
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Villano/Hater del Canal", opciones, "entry.1212348438", textoAclarativo), mostrarPreguntaTryhard, mostrarPreguntaEnemigoStreamer)
 }
 
 function mostrarPreguntaTryhard() {
@@ -419,9 +467,10 @@ function mostrarPreguntaTryhard() {
     { texto: "SONXDARK", imagen: "FORMULARIO/tryhard_3.png"},
   ];
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Tryhard del Canal", opciones, "entry.1947741075"), mostrarPantallaConfirmacion, mostrarPreguntaVillanoHater)
-}
+  const textoAclarativo = "El mejor jugador de L4D2 en todo el año"
 
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Tryhard del Canal", opciones, "entry.1947741075", textoAclarativo), mostrarPantallaConfirmacion, mostrarPreguntaVillanoHater)
+}
 
 // Función para mostrar una pregunta genérica
 function mostrarPregunta(pregunta, onNext, onPrevious) {
