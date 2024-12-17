@@ -298,18 +298,7 @@ function mostrarPreguntaModLFavorito() {
   
   const textoAclarativo = "El que para hueveando y no merece mod"
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mod menos Favorito del Canal", opciones, "entry.1154734700", textoAclarativo), mostrarPreguntaModAplicado, mostrarPreguntaModFavorito)
-}
-
-function mostrarPreguntaModAplicado() {
-  const opciones = [
-    { texto: "D3YVI", imagen: "FORMULARIO/mod_7.png"},
-    { texto: "MEMAS", imagen: "FORMULARIO/mod_2.png"},
-  ];
-
-  const textoAclarativo = "Aquel mod que sabe de comandos y paginas externas para mejorar la moderación del chat, con el de moderador el canal será más seguro"
-
-  mostrarPregunta(new PreguntaOpcionMultiple("Mod más Aplicado del Canal", opciones, "entry.699149284", textoAclarativo), mostrarPreguntaShipIconico, mostrarPreguntaModLFavorito)
+  mostrarPregunta(new PreguntaOpcionMultiple("Mod menos Favorito del Canal", opciones, "entry.1154734700", textoAclarativo), mostrarPreguntaShipIconico, mostrarPreguntaModFavorito)
 }
 
 function mostrarPreguntaShipIconico() {
@@ -323,7 +312,7 @@ function mostrarPreguntaShipIconico() {
 
   const textoAclarativo = "(Ship = Emparejar a dos personas del chat donde crean que haya tensión)"
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506", textoAclarativo), mostrarPreguntaMayorRobo, mostrarPreguntaModAplicado)
+  mostrarPregunta(new PreguntaOpcionMultiple("Ship más Icónico del Canal", opciones, "entry.2080205506", textoAclarativo), mostrarPreguntaMayorRobo, mostrarPreguntaModLFavorito)
 }
 
 function mostrarPreguntaMayorRobo() {
@@ -429,22 +418,7 @@ function mostrarPreguntaMechaCorta() {
 
   const textoAclarativo = "Persona que no tiene paciencia al jugar en equipo y lo termina gritando"
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726250007", textoAclarativo), mostrarPreguntaEnemigoStreamer, mostrarPreguntaRevientahigados)
-}
-
-function mostrarPreguntaEnemigoStreamer() {
-  const opciones = [
-    { texto: "ARMANDO", imagen: "FORMULARIO/streamer_1.png"},
-    { texto: "TRIPLEX", imagen: "FORMULARIO/streamer_2.png"},
-    { texto: "TUPAPRUX", imagen: "FORMULARIO/streamer_3.png"},
-    { texto: "FLECK", imagen: "FORMULARIO/streamer_4.png"},
-    { texto: "KITADARGO", imagen: "FORMULARIO/streamer_5.jpeg"},
-    { texto: "KUZCOPLAY", imagen: "FORMULARIO/streamer_6.png"},
-  ];
-
-  const textoAclarativo = "El que se ganó el odio del streamer"
-
-  mostrarPregunta(new PreguntaOpcionMultiple("Enemigo Favorito del Streamer", opciones, "entry.575345266", textoAclarativo), mostrarPreguntaVillanoHater, mostrarPreguntaMechaCorta)
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Mecha Corta del Canal", opciones, "entry.1726250007", textoAclarativo), mostrarPreguntaVillanoHater, mostrarPreguntaRevientahigados)
 }
 
 function mostrarPreguntaVillanoHater() {
@@ -457,7 +431,7 @@ function mostrarPreguntaVillanoHater() {
 
   const textoAclarativo = "Quien siempre tira hate de broma o arma debates polémicos"
 
-  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Villano/Hater del Canal", opciones, "entry.1212348438", textoAclarativo), mostrarPreguntaTryhard, mostrarPreguntaEnemigoStreamer)
+  mostrarPregunta(new PreguntaOpcionMultiple("Mayor Villano/Hater del Canal", opciones, "entry.1212348438", textoAclarativo), mostrarPreguntaTryhard, mostrarPreguntaMechaCorta)
 }
 
 function mostrarPreguntaTryhard() {
@@ -481,6 +455,7 @@ function mostrarPregunta(pregunta, onNext, onPrevious) {
 
 // Mostrar pantalla de confirmación
 function mostrarPantallaConfirmacion() {
+  
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = "";
 
@@ -505,66 +480,43 @@ function mostrarPantallaConfirmacion() {
   buttonContainer.appendChild(prevButton);
   buttonContainer.appendChild(sendButton);
   container.appendChild(buttonContainer);
-
   questionContainer.appendChild(container);
+  
 }
 
 // Función para enviar respuestas construyendo la URL con parámetros pre-rellenados
 function enviarRespuestas() {
+  alert("Gracias por participar, a continuación serás enviado a un Google Forms para que confirmes tus respuestas manualmente.");
   const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSctHh8gSn-jjQLz6hrfg-S1Cv6-TZ6HgKWRMc-TAajYrjC-gQ/viewform";
 
   const params = new URLSearchParams();
-  params.append("entry.1976024462", respuestas["entry.1976024462"] || "");
-  params.append("entry.813796303", respuestas["entry.813796303"] || "");
-  params.append("entry.947596321", respuestas["entry.947596321"] || "");
-  params.append("entry.219126118", respuestas["entry.219126118"] || "");
-  params.append("entry.1820309658", respuestas["entry.1820309658"] || "");
-  params.append("entry.383688201", respuestas["entry.383688201"] || "");
-  params.append("entry.136252067", respuestas["entry.136252067"] || "");
-  params.append("entry.1823896014", respuestas["entry.1823896014"] || "");
-  params.append("entry.170597404", respuestas["entry.170597404"] || "");
-  params.append("entry.1941000340", respuestas["entry.1941000340"] || "");
-  params.append("entry.1154734700", respuestas["entry.1154734700"] || "");
-  params.append("entry.699149284", respuestas["entry.699149284"] || "");
-  params.append("entry.2080205506", respuestas["entry.2080205506"] || "");
-  params.append("entry.491190079", respuestas["entry.491190079"] || "");
-  params.append("entry.674454907", respuestas["entry.674454907"] || "");
-  params.append("entry.2057661012", respuestas["entry.2057661012"] || "");
-  params.append("entry.1052283597", respuestas["entry.1052283597"] || "");
-  params.append("entry.1944514333", respuestas["entry.1944514333"] || "");
-  params.append("entry.1246182248", respuestas["entry.1246182248"] || "");
-  params.append("entry.1996664871", respuestas["entry.1996664871"] || "");
-  params.append("entry.670098138", respuestas["entry.670098138"] || "");
-  params.append("entry.1726250007", respuestas["entry.1726250007"] || "");
-  params.append("entry.575345266", respuestas["entry.575345266"] || "");
-  params.append("entry.1212348438", respuestas["entry.1212348438"] || "");
-  params.append("entry.1947741075", respuestas["entry.1947741075"] || "");
+  params.append("entry.1976024462", respuestas["entry.1976024462"] || "");  //clip
+  params.append("entry.813796303", respuestas["entry.813796303"] || "");    //clip
+  params.append("entry.947596321", respuestas["entry.947596321"] || "");    //evento
+  params.append("entry.219126118", respuestas["entry.219126118"] || "");    //meme
+  params.append("entry.1820309658", respuestas["entry.1820309658"] || "");  //colab
+  params.append("entry.383688201", respuestas["entry.383688201"] || "");    //ban
+  params.append("entry.136252067", respuestas["entry.136252067"] || "");    //viewer
+  params.append("entry.1823896014", respuestas["entry.1823896014"] || "");  //apoyo
+  params.append("entry.170597404", respuestas["entry.170597404"] || "");    //vip
+  params.append("entry.1941000340", respuestas["entry.1941000340"] || "");  //mod
+  params.append("entry.1154734700", respuestas["entry.1154734700"] || "");  //lmod
+  params.append("entry.2080205506", respuestas["entry.2080205506"] || "");  //ship
+  params.append("entry.491190079", respuestas["entry.491190079"] || "");    //robo
+  params.append("entry.674454907", respuestas["entry.674454907"] || "");    //juego
+  params.append("entry.2057661012", respuestas["entry.2057661012"] || "");  //camp
+  params.append("entry.1052283597", respuestas["entry.1052283597"] || "");  //serie
+  params.append("entry.1944514333", respuestas["entry.1944514333"] || "");  //donador
+  params.append("entry.1246182248", respuestas["entry.1246182248"] || "");  //dinamica
+  params.append("entry.1996664871", respuestas["entry.1996664871"] || "");  //mcamp
+  params.append("entry.670098138", respuestas["entry.670098138"] || "");    //higado
+  params.append("entry.1726250007", respuestas["entry.1726250007"] || "");  //mecha
+  params.append("entry.1212348438", respuestas["entry.1212348438"] || "");  //villano
+  params.append("entry.1947741075", respuestas["entry.1947741075"] || "");  //tryhard
 
   const finalUrl = `${baseUrl}?${params.toString()}`;
   console.log("Redirigiendo a:", finalUrl);
   window.location.href = finalUrl;
-}
-
-// Nueva función para mostrar la pantalla de agradecimiento
-function mostrarPantallaAgradecimiento() {
-  const questionContainer = document.getElementById("question-container");
-  questionContainer.innerHTML = "";
-
-  const container = document.createElement("div");
-  container.classList.add("thank-you-screen");
-
-  const title = document.createElement("h2");
-  title.textContent = "¡Gracias por participar!";
-  container.appendChild(title);
-
-  const message = document.createElement("p");
-  message.textContent = "Tus respuestas han sido enviadas con éxito.";
-  container.appendChild(message);
-
-  questionContainer.appendChild(container);
-
-  // Opcional: Ocultar cualquier footer-bar o botones
-  document.getElementById("footer-bar").classList.add("hidden");
 }
 
 // Transición inicial al hacer clic en "Comenzar"
@@ -579,7 +531,7 @@ document.getElementById("start-button").addEventListener("click", () => {
   const formScreen = document.getElementById("form-screen");
 
   // Animación de logo (zoom + opacidad)
-  logo.style.transform = "scale(2)";
+  logo.style.transform = "scale(4)";
   logo.style.opacity = "0";
 
   setTimeout(() => {
