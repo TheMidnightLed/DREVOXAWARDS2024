@@ -609,10 +609,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function animateParticles(isBeat) {
     if (isBeat) {
       // Aumentar tamaño de partículas rápidamente
-      particleContainer.style.transform = "scale(1.1)";
+      particleContainer.style.transform = "scale(1.25)";
+      particleContainer.style.opacity = "0.6"
     } else {
       // Reducir tamaño a la normalidad
       particleContainer.style.transform = "scale(1)";
+      particleContainer.style.opacity = "0.2"
     }
   }
 });
