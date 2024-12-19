@@ -320,6 +320,7 @@ function mostrarPreguntaMayorRobo() {
     { texto: "Premio al GOTY para Astromrd", imagen: "FORMULARIO/robo_1.png"},
     { texto: "Horas comidas del extensible", imagen: "FORMULARIO/robo_2.jpg"},
     { texto: "Incidente: Pax y el cuarto de pollo", imagen: "FORMULARIO/robo_3.jpg"},
+    { texto: "Los 200 soles perdidos en Slots", imagen: "FORMULARIO/robo_4.jpeg"},
   ];
 
   mostrarPregunta(new PreguntaOpcionMultiple("Mayor Robo del Año", opciones, "entry.491190079"), mostrarPreguntaJuegoQuemado, mostrarPreguntaShipIconico)
