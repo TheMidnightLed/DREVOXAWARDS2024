@@ -354,6 +354,7 @@ function mostrarPreguntaMejorSerie() {
     { texto: "DRAGON BALL DAIMA", imagen: "FORMULARIO/serie_3.png"},
     { texto: "CYBERPUNK: EDGERUNNERS", imagen: "FORMULARIO/serie_4.png"},
     { texto: "INVINCIBLE", imagen: "FORMULARIO/serie_5.png"},
+    { texto: "ARCANE", imagen: "FORMULARIO/serie_6.png"},
   ];
 
   const textoAclarativo = "Campaña que te hubiera gustado ver pero la mamalona no puso de su parte"
