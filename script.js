@@ -551,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isBeat = false;
 
   // Controlar el volumen del audio (ajústalo a tu preferencia)
-  audio.volume = 0.1;
+  audio.volume = 0;
 
   // Configurar el intervalo para el tempo de 90 BPM (666.67 ms por beat)
   setInterval(() => {
